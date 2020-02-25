@@ -1,0 +1,41 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+Create vectors
+
+```{r}
+stock_prices <- c(23, 27, 23, 21, 34, 24, 25, 30, 37, 30)
+day_of_week <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+day_of_week_factor <- as.factor(day_of_week)
+names(stock_prices) <- day_of_week
+named_stock_prices <- stock_prices
+```
+
+```{r}
+stock_data <- data.frame(stock_prices, day_of_week)
+View(stock_data)
+```
+
+```{r}
+stock_list <- list(
+  "Prices" = list(stock_prices),
+  "Days" = list(day_of_week), 
+  "Stock" = list(stock_data)
+)
+stock_list
+```
+
+Part 2
+
+```{r}
+stock_prices[4:6]
+stock_prices[stock_prices>30]
+stock_data$stock_prices
+stock_data[stock_data$stock_prices<25,]
+stock_data[,1]
+stock_data[3,]
+stock_data[3,1]
+stock_list$Stock
+```
+
