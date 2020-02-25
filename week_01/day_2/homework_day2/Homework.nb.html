@@ -1799,17 +1799,17 @@ stock_data</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RvY2tfbGlzdCA8LSBsaXN0KFxuICBcIlN0b2NrXCIgPSBsaXN0KHN0b2NrX3ByaWNlcyksXG4gIFwiRGF5c1wiID0gbGlzdChkYXlfb2Zfd2VlayksIFxuICBcIlN0b2NrXCIgPSBsaXN0KHN0b2NrX2RhdGEpXG4pXG5zdG9ja19saXN0XG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RvY2tfbGlzdCA8LSBsaXN0KFxuICBcIlByaWNlc1wiID0gbGlzdChzdG9ja19wcmljZXMpLFxuICBcIkRheXNcIiA9IGxpc3QoZGF5X29mX3dlZWspLCBcbiAgXCJTdG9ja1wiID0gbGlzdChzdG9ja19kYXRhKVxuKVxuc3RvY2tfbGlzdFxuYGBgIn0= -->
 <pre class="r"><code>stock_list &lt;- list(
-  &quot;Stock&quot; = list(stock_prices),
+  &quot;Prices&quot; = list(stock_prices),
   &quot;Days&quot; = list(day_of_week), 
   &quot;Stock&quot; = list(stock_data)
 )
 stock_list</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJFN0b2NrXG4kU3RvY2tbWzFdXVxuICAgTW9uZGF5ICAgVHVlc2RheSBXZWRuZXNkYXkgIFRodXJzZGF5ICAgIEZyaWRheSAgICBNb25kYXkgICBUdWVzZGF5IFdlZG5lc2RheSBcbiAgICAgICAyMyAgICAgICAgMjcgICAgICAgIDIzICAgICAgICAyMSAgICAgICAgMzQgICAgICAgIDI0ICAgICAgICAyNSAgICAgICAgMzAgXG4gVGh1cnNkYXkgICAgRnJpZGF5IFxuICAgICAgIDM3ICAgICAgICAzMCBcblxuXG4kRGF5c1xuJERheXNbWzFdXVxuIFsxXSBcIk1vbmRheVwiICAgIFwiVHVlc2RheVwiICAgXCJXZWRuZXNkYXlcIiBcIlRodXJzZGF5XCIgIFwiRnJpZGF5XCIgICAgXCJNb25kYXlcIiAgIFxuIFs3XSBcIlR1ZXNkYXlcIiAgIFwiV2VkbmVzZGF5XCIgXCJUaHVyc2RheVwiICBcIkZyaWRheVwiICAgXG5cblxuJFN0b2NrXG4kU3RvY2tbWzFdXVxuIn0= -->
-<pre><code>$Stock
-$Stock[[1]]
+<!-- rnb-output-begin eyJkYXRhIjoiJFByaWNlc1xuJFByaWNlc1tbMV1dXG4gICBNb25kYXkgICBUdWVzZGF5IFdlZG5lc2RheSAgVGh1cnNkYXkgICAgRnJpZGF5ICAgIE1vbmRheSAgIFR1ZXNkYXkgV2VkbmVzZGF5IFxuICAgICAgIDIzICAgICAgICAyNyAgICAgICAgMjMgICAgICAgIDIxICAgICAgICAzNCAgICAgICAgMjQgICAgICAgIDI1ICAgICAgICAzMCBcbiBUaHVyc2RheSAgICBGcmlkYXkgXG4gICAgICAgMzcgICAgICAgIDMwIFxuXG5cbiREYXlzXG4kRGF5c1tbMV1dXG4gWzFdIFwiTW9uZGF5XCIgICAgXCJUdWVzZGF5XCIgICBcIldlZG5lc2RheVwiIFwiVGh1cnNkYXlcIiAgXCJGcmlkYXlcIiAgICBcIk1vbmRheVwiICAgXG4gWzddIFwiVHVlc2RheVwiICAgXCJXZWRuZXNkYXlcIiBcIlRodXJzZGF5XCIgIFwiRnJpZGF5XCIgICBcblxuXG4kU3RvY2tcbiRTdG9ja1tbMV1dXG4ifQ== -->
+<pre><code>$Prices
+$Prices[[1]]
    Monday   Tuesday Wednesday  Thursday    Friday    Monday   Tuesday Wednesday 
        23        27        23        21        34        24        25        30 
  Thursday    Friday 
@@ -1863,7 +1863,7 @@ $Stock[[1]]</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RvY2tfZGF0YVtzdG9ja19kYXRhJHN0b2NrX3ByaWNlczwyNSxdXG5gYGAifQ== -->
 <pre class="r"><code>stock_data[stock_data$stock_prices&lt;25,]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVJ5MDdETUJCMG5pVUJDbEsvSTdsVWlCNDVvTjY0b0tEMkZobkhvVkdNWFRrT2haOHZyQjA3YlNNc0pUczczc2ZzK3ZWNXUweTNLVUlvUUVFTS93Z2dpdDZLZGJaQ0tQVEI4VkNJRW0yLzRYb0JRSk56K01LblIyVE9hQitzWFNGN2dsc2RaM01pMDhYZ2k4SXhvMStVZFlEdVRaUmwxN0twOEkvelhnUS9lVmZGcnBmZHlaOFZQVDF6a3cydCtFQmNkb29JdzUxck5MYXZNVkZDQWpwT3d6bitwQzdjdCtSTnB3UnB5NzFzQ053TjNEVzBLa1ZkSGlodEp6VVNLUTY1cStPMjRkbE5hQndQQ2NIdlJGWmFZWVh6V2tMcVA5Sm1ZcThhd2FHb3Y3Q3JQVS8yNUlTNDY3a1dVV1ZrMS9NMlcrb0dWb2huaFhsV2tNUDJtVUluYkh3WXlqOGFUdDJPR0g2bnpEcHpHTmJNbXNONnVIS1RBTnZsU2lqczRsSWltR1BNYk9qNEIzT2Q1bCtKQWdBQSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6NH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVJ5MDdETUJCMG5pVUJDbEsvSXptQUVEMXlRTDF4UWFub0xUS09RNk1ZdTNJY0NqOWZXRHQyMmtaWVNuWjJ2SS9aOWV2ejVqN2RwQWloQUFVeC9DT0FLRm9YcTJ5SlVPaUQ0NkVRSmRwK3cvVUNnQ2JuOElWUGo4aWMwVDVZdTBUMkJOYzZ6dVpFcG92Qlo0VmpScjhvNndEZG1pakxybVJUNFIvbnZRaCs5QzZLYlMrN296OHJlbnJpSm0rMDRnTngzaWtpREhldTBkaSt4a1FKQ2Vnd0RlZjRrN3B3MzVKWG5SS2tMWGV5SVhBM2NKZlFxaFIxdWFlMG5kUklwTmpucm83YmhtYzNvWEU4SkFTL0UxbHBoUlhPYXdtcC8waWJpWjFxQkllaS9zS3U5alRaa3hQaXB1ZGFSSldSYmMvYjdFNDNzRUk4Szh5emdoeTJ6eFE2WWVQRFVQN1JjT3AyeFBBN1pkYVp3N0JtMWh6V3c1V2JCTmd1VjBKaEY1Y1N3UnhqWmtPSFAxRy91RHlKQWdBQSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["stock_prices"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["day_of_week"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"23","2":"Monday","_rn_":"1"},{"1":"23","2":"Wednesday","_rn_":"3"},{"1":"21","2":"Thursday","_rn_":"4"},{"1":"24","2":"Monday","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[4]},"pages":{}}}
@@ -1879,7 +1879,7 @@ $Stock[[1]]</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RvY2tfZGF0YVszLF1cbmBgYCJ9 -->
 <pre class="r"><code>stock_data[3,]</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVJUVk9ETUJCZHZscEJiWjNwNzRCTEQzcjA0UFRteGNHeE55YUdZQmxpMGttQzFUOWYzUUJwS1NNSDJQZjI3YjdkNWVWcHUwNjJDUUFFRU16d0hXRUkwV3UrU1I4QVFoK0JCeUhFOXZ1TjZSVUdsbHhZNHZFZWhpZTQ3WVJZT1NtYWNmYkZ1TWJvcnNzTzdFYlZKZmx4NkZtS003cktkNjNTWnp6UFd6YUM4UnNyUlU5Y09rV1VFKzJNVHZZVm9VWXFqSTVUdVNDZnpNbjlnYnpSUnRLbTJLdWFZcTducnRHcWtGVnhZS3laOUlpVlBHU3VqN3RBMEl1QzM4a29TVWtNeVNxRjhuL0dtY3U5cWFYQVJ2NnFQK05Gc2FjbXhMSVYxcmhNNmE0VlRicTJCc01BM21pWWNlejNscUViN1BRem1QaW9CWE4zNGVTZDhRRXNjTUZ1dnd4UElvemJCRm1kR1dtSTB5VlVjc2QwdThIeEQzWHU1L0ZaQWdBQSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyMVJUVk9ETUJCZHZscEJyYzcwZDhCQkQzcjA0UFRteGNGcGIwd013VExFcEJPQzFUOWYzVURTVWtZT3NPL3QyMzI3eSt2ejVqN1pKQUFRUURERGQ0UWhSRy81S24wRUNIMEVIb1FRbSs4M3BwY1lHSEpoaUtjSHNFOXczUXV4Y2xJMDQreUw4UmFqMno1cjJaV3FTL0xqMElzVUozU1JienZWbnZBODc5Z0l4bXRXaW9FNGQ0b29KNjB6T3RwWGhHcXBNRHBNNVlKOE1pZjNMWG5WYWttYllxZHFpcm1CdTBTclFsYkZuckZtMGlOV2NwKzVQdTRDd1NBS2ZpZWpKQ1hSSktzVXl2OFpaeTUzdXBZQ0cvbkw0WXhueFo2YUVEZWRNTVpsU3JlZGFOSTdZMkFIOEViRGpHTi9zQXpkWU1lZndjUkhMWmk3Q3lmdmpGdXd3QVg3L1RJOGlkQnVFMlRiVEV0Tm5DNmhranVtM3cwT2YxZk11WkpaQWdBQSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["stock_prices"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["day_of_week"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"23","2":"Wednesday","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
@@ -1895,12 +1895,18 @@ $Stock[[1]]</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RvY2tfbGlzdCRTdG9ja1xuYGBgIn0= -->
 <pre class="r"><code>stock_list$Stock</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiAgIE1vbmRheSAgIFR1ZXNkYXkgV2VkbmVzZGF5ICBUaHVyc2RheSAgICBGcmlkYXkgICAgTW9uZGF5ICAgVHVlc2RheSBXZWRuZXNkYXkgXG4gICAgICAgMjMgICAgICAgIDI3ICAgICAgICAyMyAgICAgICAgMjEgICAgICAgIDM0ICAgICAgICAyNCAgICAgICAgMjUgICAgICAgIDMwIFxuIFRodXJzZGF5ICAgIEZyaWRheSBcbiAgICAgICAzNyAgICAgICAgMzAgXG4ifQ== -->
-<pre><code>[[1]]
-   Monday   Tuesday Wednesday  Thursday    Friday    Monday   Tuesday Wednesday 
-       23        27        23        21        34        24        25        30 
- Thursday    Friday 
-       37        30 </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiJ9 -->
+<pre><code>[[1]]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MTB9LCJyZGYiOiJINHNJQUFBQUFBQUFBMjFSVFUrRFFCQmRQdG9LMm1yUzN3RUhqYkhHeEZSamV2TmlNUFpHVmxnc0FYZWJaYkY2ODVkWFoyRzJwYVFrOE9hOUhlYk56TDQ4TGEvOHBVOEljWWd6aE84QVFqSjRqUmJCakJEWEJtSVJsM2dhditGNENvRVdKL0Q2OHh2U1BQTTdSTU92RVI4UVo0aTNpUGVJajc4SEhPcVBkVjMwY0hVblRXZTZpYVBhUVlQRGtuMnhzb0xvb3NsQ2RTSHpsUDRZOWl6NG5wMUVxMXBXZXo2S2F0YWgzaHRMZVNzY09nMlNrbGJHYUdlZjBVUUpDZEcybjg3cEp6UHBOb3BubFJKSkVhOWxuc0JacTUyQ1ZTeXllTU5ZMGF2aFNiRUpUUjI5SmJ2ZG5kNldUblQrZXUzNEtWVTB6Q1Q4Y3FTbGtWaXJYSEFvWms5eHBkMmZMZGtUem11dXpkTWdXZFc4Q0M3eG1peTh0ekhHZmllMlcwdlhOTGE3RU1ZL2NzN01ia3I2emtva0V4aXltVEdFdFhCbEpnRzFDcFZRMU9UNWlTaU4wc3hHdHY4T3R4ZXh5UUlBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["stock_prices"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["day_of_week"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"23","2":"Monday"},{"1":"27","2":"Tuesday"},{"1":"23","2":"Wednesday"},{"1":"21","2":"Thursday"},{"1":"34","2":"Friday"},{"1":"24","2":"Monday"},{"1":"25","2":"Tuesday"},{"1":"30","2":"Wednesday"},{"1":"37","2":"Thursday"},{"1":"30","2":"Friday"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
+<pre><code>NA</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
