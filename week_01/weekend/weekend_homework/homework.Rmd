@@ -136,9 +136,17 @@ my_list <- list(
 )
 
 for (element in my_list){
-  if class(element == "character") {
+  if (class(element) == "character"){
     print(element)
   } 
+}
+```
+Do the same as above, but this time use a while loop
+
+```{r}
+while (class(my_list) == "character" ) {
+  print(element)
+  
 }
 ```
 
