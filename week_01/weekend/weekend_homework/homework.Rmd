@@ -109,3 +109,36 @@ case_when(
 recode()
 ```
 
+```{r}
+my_list <- list(
+  4,
+  "apple",
+  10.5,
+  c("is", "an", "apple"),
+  "apple",
+  c("i", "like", "apples"),
+  8
+)
+```
+
+Use a for loop to print out every element of my_list which is of type characte
+
+```{r}
+
+my_list <- list(
+  4,
+  "apple",
+  10.5,
+  c("is", "an", "apple"),
+  "apple",
+  c("i", "like", "apples"),
+  8
+)
+
+for (element in my_list){
+  if class(element == "character") {
+    print(element)
+  } 
+}
+```
+
