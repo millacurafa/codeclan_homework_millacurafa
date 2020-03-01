@@ -2,3 +2,19 @@
 title: "Weekend homework"
 output: html_notebook
 ---
+Write a function which multiples all numbers by 15 and adds 4.
+
+```{r}
+multiply_by_15_adds_4 <- function(x){
+  x * 15 + 4
+}
+
+multiply_by_15_adds_4(1:4)
+```
+
+Write a function that returns “bird”, if the input is “goose”, “duck” or “pigeon”, and returns “not bird” for all other input.
+
+```{r}
+
+```
+
