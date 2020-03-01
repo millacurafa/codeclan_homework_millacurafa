@@ -44,3 +44,43 @@ multiply_and_check(c(1,3,4,5))
 multiply_and_check(c(1,3,4,5,"invalid"))
 ```
 
+For each question provide three answers: one using ifelse(), one using recode() and one using case_when(). Discuss which approach you think is easiest for each question.
+
+Remember to load dplyr to use recode() and case_when().
+
+```{r}
+library(dplyr)
+
+```
+
+For the vector below, make a new vector which is equal to “Big” every time the element of sizes is greater than 10, and equal to “Small” every time the element of sizes is less than or equal to 10.
+
+```{r}
+sizes <- c(13, 15, 10, 8, 22)
+
+ifelse(sizes > 10, "Big", "Small")
+case_when(sizes > 10 ~ "Big",
+       sizes <= 10 ~ "Small")
+
+small <- c(1:10)
+big <- c(11:10000)
+dplyr::recode(factor(sizes), small = "Small", big = "Big")
+
+```
+
+For the vector below convert:
+
+apple → alpaca
+
+banana → bonobo
+
+cherry → chipmunk
+
+```{r}
+fruit <- c("apple", "apple", "banana", "cherry", "cherry")
+
+ifelse()
+case_when()
+dplyr::recode()
+```
+

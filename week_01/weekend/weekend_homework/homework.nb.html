@@ -1814,17 +1814,85 @@ multiply_and_check(20)</code></pre>
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEwIDMwIDQwIDUwXG4ifQ== -->
 <pre><code>[1] 10 30 40 50</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfYW5kX2NoZWNrKGMoMSwzLDQsNSxcImNhdFwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>multiply_and_check(c(1,3,4,5,&quot;cat&quot;))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfYW5kX2NoZWNrKGMoMSwzLDQsNSxcImludmFsaWRcIikpXG5gYGAifQ== -->
+<pre class="r"><code>multiply_and_check(c(1,3,4,5,&quot;invalid&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSW52YWxpZCBpbnB1dFwiXG4ifQ== -->
 <pre><code>[1] &quot;Invalid input&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>For each question provide three answers: one using ifelse(), one using recode() and one using case_when(). Discuss which approach you think is easiest for each question.</p>
+<p>Remember to load dplyr to use recode() and case_when().</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<pre class="r"><code>library(dplyr)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RwbHlyJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LnJvd3dpc2VfZGYgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>Registered S3 method overwritten by 'dplyr':
+  method           from
+  print.rowwise_df     
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>For the vector below, make a new vector which is equal to “Big” every time the element of sizes is greater than 10, and equal to “Small” every time the element of sizes is less than or equal to 10.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2l6ZXMgPC0gYygxMywgMTUsIDEwLCA4LCAyMilcblxuaWZlbHNlKHNpemVzID4gMTAsIFwiQmlnXCIsIFwiU21hbGxcIilcbmBgYCJ9 -->
+<pre class="r"><code>sizes &lt;- c(13, 15, 10, 8, 22)
+
+ifelse(sizes &gt; 10, &quot;Big&quot;, &quot;Small&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQmlnXCIgICBcIkJpZ1wiICAgXCJTbWFsbFwiIFwiU21hbGxcIiBcIkJpZ1wiICBcbiJ9 -->
+<pre><code>[1] &quot;Big&quot;   &quot;Big&quot;   &quot;Small&quot; &quot;Small&quot; &quot;Big&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FzZV93aGVuKHNpemVzID4gMTAgfiBcIkJpZ1wiLFxuICAgICAgIHNpemVzIDw9IDEwIH4gXCJTbWFsbFwiKVxuYGBgIn0= -->
+<pre class="r"><code>case_when(sizes &gt; 10 ~ &quot;Big&quot;,
+       sizes &lt;= 10 ~ &quot;Small&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQmlnXCIgICBcIkJpZ1wiICAgXCJTbWFsbFwiIFwiU21hbGxcIiBcIkJpZ1wiICBcbiJ9 -->
+<pre><code>[1] &quot;Big&quot;   &quot;Big&quot;   &quot;Small&quot; &quot;Small&quot; &quot;Big&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc21hbGwgPC0gYygxOjEwKVxuYmlnIDwtIGMoMTE6MTAwMDApXG5kcGx5cjo6cmVjb2RlKGZhY3RvcihzaXplcyksIHNtYWxsID0gXCJTbWFsbFwiLCBiaWcgPSBcIkJpZ1wiKVxuYGBgIn0= -->
+<pre class="r"><code>small &lt;- c(1:10)
+big &lt;- c(11:10000)
+dplyr::recode(factor(sizes), small = &quot;Small&quot;, big = &quot;Big&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEzIDE1IDEwIDggIDIyXG5MZXZlbHM6IDggMTAgMTMgMTUgMjJcbiJ9 -->
+<pre><code>[1] 13 15 10 8  22
+Levels: 8 10 13 15 22</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>For the vector below convert:</p>
+<p>apple → alpaca</p>
+<p>banana → bonobo</p>
+<p>cherry → chipmunk</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FzZV93aGVuKClcblxuYGBgIn0= -->
+<pre class="r"><code>case_when()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IE5vIGNhc2VzIHByb3ZpZGVkXG4ifQ== -->
+<pre><code>Error: No cases provided</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2Vla2VuZCBob21ld29yayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxlcyBhbGwgbnVtYmVycyBieSAxNSBhbmQgYWRkcyA0LgoKYGBge3J9Cm11bHRpcGx5X2J5XzE1X2FkZHNfNCA8LSBmdW5jdGlvbih4KXsKICB4ICogMTUgKyA0Cn0KCm11bHRpcGx5X2J5XzE1X2FkZHNfNCgxOjQpCmBgYAoKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHJldHVybnMg4oCcYmlyZOKAnSwgaWYgdGhlIGlucHV0IGlzIOKAnGdvb3Nl4oCdLCDigJxkdWNr4oCdIG9yIOKAnHBpZ2VvbuKAnSwgYW5kIHJldHVybnMg4oCcbm90IGJpcmTigJ0gZm9yIGFsbCBvdGhlciBpbnB1dC4KCmBgYHtyfQpiaXJkX2RldGVjdG9yIDwtIGZ1bmN0aW9uKHgpewogIGlmICh4ID09ICJnb29zZSIgfCB4ID09ICJkdWNrIiB8IHggPT0gInBpZ2VvbiIpewogICAgcmV0dXJuKCJiaXJkIikKICB9IGVsc2UgcmV0dXJuKCJubyBiaXJkIikKfQoKYmlyZF9kZXRlY3RvcigiYV93ZWlyZF9iaXJkIikKCmJpcmRfZGV0ZWN0b3IoImdvb3NlIikKYGBgCgpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxpZXMgYWxsIG51bWJlcnMgYnkgMTAuIElmIHRoZSBpbnB1dCBpc27igJl0IGEgbnVtYmVyLCB0aGUgZnVuY3Rpb24gc2hvdWxkIHJldHVybiDigJxJbnZhbGlkIGlucHV04oCdLgoKYGBge3J9Cm11bHRpcGx5X2FuZF9jaGVjayA8LSBmdW5jdGlvbih4KXsKICBpZiAoY2xhc3MoeCkgIT0gIm51bWVyaWMiKXsKICAgIHJldHVybigiSW52YWxpZCBpbnB1dCIpCiAgfSBlbHNlIHggKiAxMAp9CgptdWx0aXBseV9hbmRfY2hlY2soMjApCgptdWx0aXBseV9hbmRfY2hlY2soIndlaXJkX251bWJlciIpCgptdWx0aXBseV9hbmRfY2hlY2soYygxLDMsNCw1KSkKCm11bHRpcGx5X2FuZF9jaGVjayhjKDEsMyw0LDUsImludmFsaWQiKSkKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2Vla2VuZCBob21ld29yayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxlcyBhbGwgbnVtYmVycyBieSAxNSBhbmQgYWRkcyA0LgoKYGBge3J9Cm11bHRpcGx5X2J5XzE1X2FkZHNfNCA8LSBmdW5jdGlvbih4KXsKICB4ICogMTUgKyA0Cn0KCm11bHRpcGx5X2J5XzE1X2FkZHNfNCgxOjQpCmBgYAoKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHJldHVybnMg4oCcYmlyZOKAnSwgaWYgdGhlIGlucHV0IGlzIOKAnGdvb3Nl4oCdLCDigJxkdWNr4oCdIG9yIOKAnHBpZ2VvbuKAnSwgYW5kIHJldHVybnMg4oCcbm90IGJpcmTigJ0gZm9yIGFsbCBvdGhlciBpbnB1dC4KCmBgYHtyfQpiaXJkX2RldGVjdG9yIDwtIGZ1bmN0aW9uKHgpewogIGlmICh4ID09ICJnb29zZSIgfCB4ID09ICJkdWNrIiB8IHggPT0gInBpZ2VvbiIpewogICAgcmV0dXJuKCJiaXJkIikKICB9IGVsc2UgcmV0dXJuKCJubyBiaXJkIikKfQoKYmlyZF9kZXRlY3RvcigiYV93ZWlyZF9iaXJkIikKCmJpcmRfZGV0ZWN0b3IoImdvb3NlIikKYGBgCgpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxpZXMgYWxsIG51bWJlcnMgYnkgMTAuIElmIHRoZSBpbnB1dCBpc27igJl0IGEgbnVtYmVyLCB0aGUgZnVuY3Rpb24gc2hvdWxkIHJldHVybiDigJxJbnZhbGlkIGlucHV04oCdLgoKYGBge3J9Cm11bHRpcGx5X2FuZF9jaGVjayA8LSBmdW5jdGlvbih4KXsKICBpZiAoY2xhc3MoeCkgIT0gIm51bWVyaWMiKXsKICAgIHJldHVybigiSW52YWxpZCBpbnB1dCIpCiAgfSBlbHNlIHggKiAxMAp9CgptdWx0aXBseV9hbmRfY2hlY2soMjApCgptdWx0aXBseV9hbmRfY2hlY2soIndlaXJkX251bWJlciIpCgptdWx0aXBseV9hbmRfY2hlY2soYygxLDMsNCw1KSkKCm11bHRpcGx5X2FuZF9jaGVjayhjKDEsMyw0LDUsImludmFsaWQiKSkKYGBgCgpGb3IgZWFjaCBxdWVzdGlvbiBwcm92aWRlIHRocmVlIGFuc3dlcnM6IG9uZSB1c2luZyBpZmVsc2UoKSwgb25lIHVzaW5nIHJlY29kZSgpIGFuZCBvbmUgdXNpbmcgY2FzZV93aGVuKCkuIERpc2N1c3Mgd2hpY2ggYXBwcm9hY2ggeW91IHRoaW5rIGlzIGVhc2llc3QgZm9yIGVhY2ggcXVlc3Rpb24uCgpSZW1lbWJlciB0byBsb2FkIGRwbHlyIHRvIHVzZSByZWNvZGUoKSBhbmQgY2FzZV93aGVuKCkuCgpgYGB7cn0KbGlicmFyeShkcGx5cikKCmBgYAoKRm9yIHRoZSB2ZWN0b3IgYmVsb3csIG1ha2UgYSBuZXcgdmVjdG9yIHdoaWNoIGlzIGVxdWFsIHRvIOKAnEJpZ+KAnSBldmVyeSB0aW1lIHRoZSBlbGVtZW50IG9mIHNpemVzIGlzIGdyZWF0ZXIgdGhhbiAxMCwgYW5kIGVxdWFsIHRvIOKAnFNtYWxs4oCdIGV2ZXJ5IHRpbWUgdGhlIGVsZW1lbnQgb2Ygc2l6ZXMgaXMgbGVzcyB0aGFuIG9yIGVxdWFsIHRvIDEwLgoKYGBge3J9CnNpemVzIDwtIGMoMTMsIDE1LCAxMCwgOCwgMjIpCgppZmVsc2Uoc2l6ZXMgPiAxMCwgIkJpZyIsICJTbWFsbCIpCmNhc2Vfd2hlbihzaXplcyA+IDEwIH4gIkJpZyIsCiAgICAgICBzaXplcyA8PSAxMCB+ICJTbWFsbCIpCgpzbWFsbCA8LSBjKDE6MTApCmJpZyA8LSBjKDExOjEwMDAwKQpkcGx5cjo6cmVjb2RlKGZhY3RvcihzaXplcyksIHNtYWxsID0gIlNtYWxsIiwgYmlnID0gIkJpZyIpCgpgYGAKCkZvciB0aGUgdmVjdG9yIGJlbG93IGNvbnZlcnQ6CgphcHBsZSDihpIgYWxwYWNhCgpiYW5hbmEg4oaSIGJvbm9ibwoKY2hlcnJ5IOKGkiBjaGlwbXVuawoKYGBge3J9CmZydWl0IDwtIGMoImFwcGxlIiwgImFwcGxlIiwgImJhbmFuYSIsICJjaGVycnkiLCAiY2hlcnJ5IikKCmlmZWxzZSgpCmNhc2Vfd2hlbigpCmRwbHlyOjpyZWNvZGUoKQpgYGAKCg==</div>
 
 
 
