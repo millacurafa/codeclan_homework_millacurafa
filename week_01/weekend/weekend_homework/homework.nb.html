@@ -1864,14 +1864,16 @@ ifelse(sizes &gt; 10, &quot;Big&quot;, &quot;Small&quot;)</code></pre>
 <!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQmlnXCIgICBcIkJpZ1wiICAgXCJTbWFsbFwiIFwiU21hbGxcIiBcIkJpZ1wiICBcbiJ9 -->
 <pre><code>[1] &quot;Big&quot;   &quot;Big&quot;   &quot;Small&quot; &quot;Small&quot; &quot;Big&quot;  </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc21hbGwgPC0gYygxOjEwKVxuYmlnIDwtIGMoMTE6MTAwMDApXG5kcGx5cjo6cmVjb2RlKGZhY3RvcihzaXplcyksIHNtYWxsID0gXCJTbWFsbFwiLCBiaWcgPSBcIkJpZ1wiKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc21hbGwgPC0gYygxOjEwKVxuYmlnIDwtIGMoMTE6MTAwMDApXG5kcGx5cjo6cmVjb2RlKHNpemVzLCBzbWFsbCA9IFwiU21hbGxcIiwgYmlnID0gXCJCaWdcIilcbmBgYCJ9 -->
 <pre class="r"><code>small &lt;- c(1:10)
 big &lt;- c(11:10000)
-dplyr::recode(factor(sizes), small = &quot;Small&quot;, big = &quot;Big&quot;)</code></pre>
+dplyr::recode(sizes, small = &quot;Small&quot;, big = &quot;Big&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEzIDE1IDEwIDggIDIyXG5MZXZlbHM6IDggMTAgMTMgMTUgMjJcbiJ9 -->
-<pre><code>[1] 13 15 10 8  22
-Levels: 8 10 13 15 22</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTkFzIGludHJvZHVjZWQgYnkgY29lcmNpb25VbnJlcGxhY2VkIHZhbHVlcyB0cmVhdGVkIGFzIE5BIGFzIC54IGlzIG5vdCBjb21wYXRpYmxlLiBQbGVhc2Ugc3BlY2lmeSByZXBsYWNlbWVudHMgZXhoYXVzdGl2ZWx5IG9yIHN1cHBseSAuZGVmYXVsdFxuIn0= -->
+<pre><code>NAs introduced by coercionUnreplaced values treated as NA as .x is not compatible. Please specify replacements exhaustively or supply .default</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIE5BIE5BIE5BIE5BIE5BXG4ifQ== -->
+<pre><code>[1] NA NA NA NA NA</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1881,18 +1883,70 @@ Levels: 8 10 13 15 22</code></pre>
 <p>cherry → chipmunk</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FzZV93aGVuKClcblxuYGBgIn0= -->
-<pre class="r"><code>case_when()
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJ1aXQgPC0gYyhcImFwcGxlXCIsIFwiYXBwbGVcIiwgXCJiYW5hbmFcIiwgXCJjaGVycnlcIiwgXCJjaGVycnlcIilcblxuaWZlbHNlKGZydWl0ID09IFwiYXBwbGVcIiwgXCJhbHBhY2FcIiwgKGlmZWxzZShmcnVpdCA9PSBcImJhbmFuYVwiLCBcImJvbm9ib1wiLCAoaWZlbHNlKGZydWl0ID09IFwiY2hlcnJ5XCIsIFwiY2hpcG11bmtcIiwgZnJ1aXQpKSkpICkgXG5gYGAifQ== -->
+<pre class="r"><code>fruit &lt;- c(&quot;apple&quot;, &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;cherry&quot;)
+
+ifelse(fruit == &quot;apple&quot;, &quot;alpaca&quot;, (ifelse(fruit == &quot;banana&quot;, &quot;bonobo&quot;, (ifelse(fruit == &quot;cherry&quot;, &quot;chipmunk&quot;, fruit)))) ) </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IE5vIGNhc2VzIHByb3ZpZGVkXG4ifQ== -->
-<pre><code>Error: No cases provided</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWxwYWNhXCIgICBcImFscGFjYVwiICAgXCJib25vYm9cIiAgIFwiY2hpcG11bmtcIiBcImNoaXBtdW5rXCJcbiJ9 -->
+<pre><code>[1] &quot;alpaca&quot;   &quot;alpaca&quot;   &quot;bonobo&quot;   &quot;chipmunk&quot; &quot;chipmunk&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FzZV93aGVuKFxuICBmcnVpdCA9PSBcImFwcGxlXCIgfiBcImFscGFjYVwiLFxuICBmcnVpdCA9PSBcImJhbmFuYVwiIH4gXCJib25vYm9cIixcbiAgZnJ1aXQgPT0gXCJjaGVycnlcIiB+IFwiY2hpcG11bmtcIlxuICApXG5gYGAifQ== -->
+<pre class="r"><code>case_when(
+  fruit == &quot;apple&quot; ~ &quot;alpaca&quot;,
+  fruit == &quot;banana&quot; ~ &quot;bonobo&quot;,
+  fruit == &quot;cherry&quot; ~ &quot;chipmunk&quot;
+  )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWxwYWNhXCIgICBcImFscGFjYVwiICAgXCJib25vYm9cIiAgIFwiY2hpcG11bmtcIiBcImNoaXBtdW5rXCJcbiJ9 -->
+<pre><code>[1] &quot;alpaca&quot;   &quot;alpaca&quot;   &quot;bonobo&quot;   &quot;chipmunk&quot; &quot;chipmunk&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVjb2RlKGZydWl0LCBcImFwcGxlXCIgPSBcImFscGFjYVwiLCBcImJhbmFuYVwiID0gXCJib25vYm9cIiwgXCJjaGVycnlcIiA9IFwiY2hpcG11bmtcIilcbmBgYCJ9 -->
+<pre class="r"><code>recode(fruit, &quot;apple&quot; = &quot;alpaca&quot;, &quot;banana&quot; = &quot;bonobo&quot;, &quot;cherry&quot; = &quot;chipmunk&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWxwYWNhXCIgICBcImFscGFjYVwiICAgXCJib25vYm9cIiAgIFwiY2hpcG11bmtcIiBcImNoaXBtdW5rXCJcbiJ9 -->
+<pre><code>[1] &quot;alpaca&quot;   &quot;alpaca&quot;   &quot;bonobo&quot;   &quot;chipmunk&quot; &quot;chipmunk&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The two vectors below show the ages at marriage of each member of a couple. The first elements of each vector correspond to the first couple, the second elements to the second couple, and so on.</p>
+<p>Create a new vector which is equal to:</p>
+<p>“Wife older” whenever the wife’s age is highest “Husband older” when the husband’s age is highest “Same age” when they are the same age</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTClcbmh1c2JhbmRfYWdlIDwtIGMoMjhMLCAzNUwsIDMyTCwgMzFMLCAyOUwpXG5cbmlmZWxzZSh3aWZlX2FnZSA+IGh1c2JhbmRfYWdlLCBcIldpZmUgb2xkZXJcIiwgKGlmZWxzZSh3aWZlX2FnZSA8IGh1c2JhbmRfYWdlLCBcIkh1c2JhbmQgb2xkZXJcIiwgXCJTYW1lIGFnZVwiKSkpXG5gYGAifQ== -->
+<pre class="r"><code>wife_age &lt;- c(29L, 30L, 36L, 31L, 22L)
+husband_age &lt;- c(28L, 35L, 32L, 31L, 29L)
+
+ifelse(wife_age &gt; husband_age, &quot;Wife older&quot;, (ifelse(wife_age &lt; husband_age, &quot;Husband older&quot;, &quot;Same age&quot;)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiV2lmZSBvbGRlclwiICAgIFwiSHVzYmFuZCBvbGRlclwiIFwiV2lmZSBvbGRlclwiICAgIFwiU2FtZSBhZ2VcIiAgICAgXG5bNV0gXCJIdXNiYW5kIG9sZGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;Wife older&quot;    &quot;Husband older&quot; &quot;Wife older&quot;    &quot;Same age&quot;     
+[5] &quot;Husband older&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2FzZV93aGVuKFxuICB3aWZlX2FnZSA+IGh1c2JhbmRfYWdlIH4gXCJXaWZlIG9sZGVyXCIsXG4gIHdpZmVfYWdlIDwgaHVzYmFuZF9hZ2UgfiBcIkh1c2JhbmQgb2xkZXJcIixcbiAgd2lmZV9hZ2UgPT0gaHVzYmFuZF9hZ2UgfiBcIlNhbWUgYWdlXCJcbilcbmBgYCJ9 -->
+<pre class="r"><code>case_when(
+  wife_age &gt; husband_age ~ &quot;Wife older&quot;,
+  wife_age &lt; husband_age ~ &quot;Husband older&quot;,
+  wife_age == husband_age ~ &quot;Same age&quot;
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiV2lmZSBvbGRlclwiICAgIFwiSHVzYmFuZCBvbGRlclwiIFwiV2lmZSBvbGRlclwiICAgIFwiU2FtZSBhZ2VcIiAgICAgXG5bNV0gXCJIdXNiYW5kIG9sZGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;Wife older&quot;    &quot;Husband older&quot; &quot;Wife older&quot;    &quot;Same age&quot;     
+[5] &quot;Husband older&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVjb2RlKClcbmBgYCJ9 -->
+<pre class="r"><code>recode()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gVXNlTWV0aG9kKFwicmVjb2RlXCIpIDogXG4gIG5vIGFwcGxpY2FibGUgbWV0aG9kIGZvciAncmVjb2RlJyBhcHBsaWVkIHRvIGFuIG9iamVjdCBvZiBjbGFzcyBcIk5VTExcIlxuIn0= -->
+<pre><code>Error in UseMethod(&quot;recode&quot;) : 
+  no applicable method for 'recode' applied to an object of class &quot;NULL&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2Vla2VuZCBob21ld29yayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxlcyBhbGwgbnVtYmVycyBieSAxNSBhbmQgYWRkcyA0LgoKYGBge3J9Cm11bHRpcGx5X2J5XzE1X2FkZHNfNCA8LSBmdW5jdGlvbih4KXsKICB4ICogMTUgKyA0Cn0KCm11bHRpcGx5X2J5XzE1X2FkZHNfNCgxOjQpCmBgYAoKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHJldHVybnMg4oCcYmlyZOKAnSwgaWYgdGhlIGlucHV0IGlzIOKAnGdvb3Nl4oCdLCDigJxkdWNr4oCdIG9yIOKAnHBpZ2VvbuKAnSwgYW5kIHJldHVybnMg4oCcbm90IGJpcmTigJ0gZm9yIGFsbCBvdGhlciBpbnB1dC4KCmBgYHtyfQpiaXJkX2RldGVjdG9yIDwtIGZ1bmN0aW9uKHgpewogIGlmICh4ID09ICJnb29zZSIgfCB4ID09ICJkdWNrIiB8IHggPT0gInBpZ2VvbiIpewogICAgcmV0dXJuKCJiaXJkIikKICB9IGVsc2UgcmV0dXJuKCJubyBiaXJkIikKfQoKYmlyZF9kZXRlY3RvcigiYV93ZWlyZF9iaXJkIikKCmJpcmRfZGV0ZWN0b3IoImdvb3NlIikKYGBgCgpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxpZXMgYWxsIG51bWJlcnMgYnkgMTAuIElmIHRoZSBpbnB1dCBpc27igJl0IGEgbnVtYmVyLCB0aGUgZnVuY3Rpb24gc2hvdWxkIHJldHVybiDigJxJbnZhbGlkIGlucHV04oCdLgoKYGBge3J9Cm11bHRpcGx5X2FuZF9jaGVjayA8LSBmdW5jdGlvbih4KXsKICBpZiAoY2xhc3MoeCkgIT0gIm51bWVyaWMiKXsKICAgIHJldHVybigiSW52YWxpZCBpbnB1dCIpCiAgfSBlbHNlIHggKiAxMAp9CgptdWx0aXBseV9hbmRfY2hlY2soMjApCgptdWx0aXBseV9hbmRfY2hlY2soIndlaXJkX251bWJlciIpCgptdWx0aXBseV9hbmRfY2hlY2soYygxLDMsNCw1KSkKCm11bHRpcGx5X2FuZF9jaGVjayhjKDEsMyw0LDUsImludmFsaWQiKSkKYGBgCgpGb3IgZWFjaCBxdWVzdGlvbiBwcm92aWRlIHRocmVlIGFuc3dlcnM6IG9uZSB1c2luZyBpZmVsc2UoKSwgb25lIHVzaW5nIHJlY29kZSgpIGFuZCBvbmUgdXNpbmcgY2FzZV93aGVuKCkuIERpc2N1c3Mgd2hpY2ggYXBwcm9hY2ggeW91IHRoaW5rIGlzIGVhc2llc3QgZm9yIGVhY2ggcXVlc3Rpb24uCgpSZW1lbWJlciB0byBsb2FkIGRwbHlyIHRvIHVzZSByZWNvZGUoKSBhbmQgY2FzZV93aGVuKCkuCgpgYGB7cn0KbGlicmFyeShkcGx5cikKCmBgYAoKRm9yIHRoZSB2ZWN0b3IgYmVsb3csIG1ha2UgYSBuZXcgdmVjdG9yIHdoaWNoIGlzIGVxdWFsIHRvIOKAnEJpZ+KAnSBldmVyeSB0aW1lIHRoZSBlbGVtZW50IG9mIHNpemVzIGlzIGdyZWF0ZXIgdGhhbiAxMCwgYW5kIGVxdWFsIHRvIOKAnFNtYWxs4oCdIGV2ZXJ5IHRpbWUgdGhlIGVsZW1lbnQgb2Ygc2l6ZXMgaXMgbGVzcyB0aGFuIG9yIGVxdWFsIHRvIDEwLgoKYGBge3J9CnNpemVzIDwtIGMoMTMsIDE1LCAxMCwgOCwgMjIpCgppZmVsc2Uoc2l6ZXMgPiAxMCwgIkJpZyIsICJTbWFsbCIpCmNhc2Vfd2hlbihzaXplcyA+IDEwIH4gIkJpZyIsCiAgICAgICBzaXplcyA8PSAxMCB+ICJTbWFsbCIpCgpzbWFsbCA8LSBjKDE6MTApCmJpZyA8LSBjKDExOjEwMDAwKQpkcGx5cjo6cmVjb2RlKGZhY3RvcihzaXplcyksIHNtYWxsID0gIlNtYWxsIiwgYmlnID0gIkJpZyIpCgpgYGAKCkZvciB0aGUgdmVjdG9yIGJlbG93IGNvbnZlcnQ6CgphcHBsZSDihpIgYWxwYWNhCgpiYW5hbmEg4oaSIGJvbm9ibwoKY2hlcnJ5IOKGkiBjaGlwbXVuawoKYGBge3J9CmZydWl0IDwtIGMoImFwcGxlIiwgImFwcGxlIiwgImJhbmFuYSIsICJjaGVycnkiLCAiY2hlcnJ5IikKCmlmZWxzZSgpCmNhc2Vfd2hlbigpCmRwbHlyOjpyZWNvZGUoKQpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2Vla2VuZCBob21ld29yayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxlcyBhbGwgbnVtYmVycyBieSAxNSBhbmQgYWRkcyA0LgoKYGBge3J9Cm11bHRpcGx5X2J5XzE1X2FkZHNfNCA8LSBmdW5jdGlvbih4KXsKICB4ICogMTUgKyA0Cn0KCm11bHRpcGx5X2J5XzE1X2FkZHNfNCgxOjQpCmBgYAoKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHJldHVybnMg4oCcYmlyZOKAnSwgaWYgdGhlIGlucHV0IGlzIOKAnGdvb3Nl4oCdLCDigJxkdWNr4oCdIG9yIOKAnHBpZ2VvbuKAnSwgYW5kIHJldHVybnMg4oCcbm90IGJpcmTigJ0gZm9yIGFsbCBvdGhlciBpbnB1dC4KCmBgYHtyfQpiaXJkX2RldGVjdG9yIDwtIGZ1bmN0aW9uKHgpewogIGlmICh4ID09ICJnb29zZSIgfCB4ID09ICJkdWNrIiB8IHggPT0gInBpZ2VvbiIpewogICAgcmV0dXJuKCJiaXJkIikKICB9IGVsc2UgcmV0dXJuKCJubyBiaXJkIikKfQoKYmlyZF9kZXRlY3RvcigiYV93ZWlyZF9iaXJkIikKCmJpcmRfZGV0ZWN0b3IoImdvb3NlIikKYGBgCgpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxpZXMgYWxsIG51bWJlcnMgYnkgMTAuIElmIHRoZSBpbnB1dCBpc27igJl0IGEgbnVtYmVyLCB0aGUgZnVuY3Rpb24gc2hvdWxkIHJldHVybiDigJxJbnZhbGlkIGlucHV04oCdLgoKYGBge3J9Cm11bHRpcGx5X2FuZF9jaGVjayA8LSBmdW5jdGlvbih4KXsKICBpZiAoY2xhc3MoeCkgIT0gIm51bWVyaWMiKXsKICAgIHJldHVybigiSW52YWxpZCBpbnB1dCIpCiAgfSBlbHNlIHggKiAxMAp9CgptdWx0aXBseV9hbmRfY2hlY2soMjApCgptdWx0aXBseV9hbmRfY2hlY2soIndlaXJkX251bWJlciIpCgptdWx0aXBseV9hbmRfY2hlY2soYygxLDMsNCw1KSkKCm11bHRpcGx5X2FuZF9jaGVjayhjKDEsMyw0LDUsImludmFsaWQiKSkKYGBgCgpGb3IgZWFjaCBxdWVzdGlvbiBwcm92aWRlIHRocmVlIGFuc3dlcnM6IG9uZSB1c2luZyBpZmVsc2UoKSwgb25lIHVzaW5nIHJlY29kZSgpIGFuZCBvbmUgdXNpbmcgY2FzZV93aGVuKCkuIERpc2N1c3Mgd2hpY2ggYXBwcm9hY2ggeW91IHRoaW5rIGlzIGVhc2llc3QgZm9yIGVhY2ggcXVlc3Rpb24uCgpSZW1lbWJlciB0byBsb2FkIGRwbHlyIHRvIHVzZSByZWNvZGUoKSBhbmQgY2FzZV93aGVuKCkuCgpgYGB7cn0KbGlicmFyeShkcGx5cikKCmBgYAoKRm9yIHRoZSB2ZWN0b3IgYmVsb3csIG1ha2UgYSBuZXcgdmVjdG9yIHdoaWNoIGlzIGVxdWFsIHRvIOKAnEJpZ+KAnSBldmVyeSB0aW1lIHRoZSBlbGVtZW50IG9mIHNpemVzIGlzIGdyZWF0ZXIgdGhhbiAxMCwgYW5kIGVxdWFsIHRvIOKAnFNtYWxs4oCdIGV2ZXJ5IHRpbWUgdGhlIGVsZW1lbnQgb2Ygc2l6ZXMgaXMgbGVzcyB0aGFuIG9yIGVxdWFsIHRvIDEwLgoKYGBge3J9CnNpemVzIDwtIGMoMTMsIDE1LCAxMCwgOCwgMjIpCgppZmVsc2Uoc2l6ZXMgPiAxMCwgIkJpZyIsICJTbWFsbCIpCmNhc2Vfd2hlbihzaXplcyA+IDEwIH4gIkJpZyIsCiAgICAgICBzaXplcyA8PSAxMCB+ICJTbWFsbCIpCgpzbWFsbCA8LSBjKDE6MTApCmJpZyA8LSBjKDExOjEwMDAwKQpkcGx5cjo6cmVjb2RlKHNpemVzLCBzbWFsbCA9ICJTbWFsbCIsIGJpZyA9ICJCaWciKQoKYGBgCgpGb3IgdGhlIHZlY3RvciBiZWxvdyBjb252ZXJ0OgoKYXBwbGUg4oaSIGFscGFjYQoKYmFuYW5hIOKGkiBib25vYm8KCmNoZXJyeSDihpIgY2hpcG11bmsKCmBgYHtyfQpmcnVpdCA8LSBjKCJhcHBsZSIsICJhcHBsZSIsICJiYW5hbmEiLCAiY2hlcnJ5IiwgImNoZXJyeSIpCgppZmVsc2UoZnJ1aXQgPT0gImFwcGxlIiwgImFscGFjYSIsIChpZmVsc2UoZnJ1aXQgPT0gImJhbmFuYSIsICJib25vYm8iLCAoaWZlbHNlKGZydWl0ID09ICJjaGVycnkiLCAiY2hpcG11bmsiLCBmcnVpdCkpKSkgKSAKCmNhc2Vfd2hlbigKICBmcnVpdCA9PSAiYXBwbGUiIH4gImFscGFjYSIsCiAgZnJ1aXQgPT0gImJhbmFuYSIgfiAiYm9ub2JvIiwKICBmcnVpdCA9PSAiY2hlcnJ5IiB+ICJjaGlwbXVuayIKICApCnJlY29kZShmcnVpdCwgImFwcGxlIiA9ICJhbHBhY2EiLCAiYmFuYW5hIiA9ICJib25vYm8iLCAiY2hlcnJ5IiA9ICJjaGlwbXVuayIpCmBgYAoKVGhlIHR3byB2ZWN0b3JzIGJlbG93IHNob3cgdGhlIGFnZXMgYXQgbWFycmlhZ2Ugb2YgZWFjaCBtZW1iZXIgb2YgYSBjb3VwbGUuIFRoZSBmaXJzdCBlbGVtZW50cyBvZiBlYWNoIHZlY3RvciBjb3JyZXNwb25kIHRvIHRoZSBmaXJzdCBjb3VwbGUsIHRoZSBzZWNvbmQgZWxlbWVudHMgdG8gdGhlIHNlY29uZCBjb3VwbGUsIGFuZCBzbyBvbi4KCkNyZWF0ZSBhIG5ldyB2ZWN0b3Igd2hpY2ggaXMgZXF1YWwgdG86CgrigJxXaWZlIG9sZGVy4oCdIHdoZW5ldmVyIHRoZSB3aWZl4oCZcyBhZ2UgaXMgaGlnaGVzdCDigJxIdXNiYW5kIG9sZGVy4oCdIHdoZW4gdGhlIGh1c2JhbmTigJlzIGFnZSBpcyBoaWdoZXN0IOKAnFNhbWUgYWdl4oCdIHdoZW4gdGhleSBhcmUgdGhlIHNhbWUgYWdlCgpgYGB7cn0Kd2lmZV9hZ2UgPC0gYygyOUwsIDMwTCwgMzZMLCAzMUwsIDIyTCkKaHVzYmFuZF9hZ2UgPC0gYygyOEwsIDM1TCwgMzJMLCAzMUwsIDI5TCkKCmlmZWxzZSh3aWZlX2FnZSA+IGh1c2JhbmRfYWdlLCAiV2lmZSBvbGRlciIsIChpZmVsc2Uod2lmZV9hZ2UgPCBodXNiYW5kX2FnZSwgIkh1c2JhbmQgb2xkZXIiLCAiU2FtZSBhZ2UiKSkpCgpjYXNlX3doZW4oCiAgd2lmZV9hZ2UgPiBodXNiYW5kX2FnZSB+ICJXaWZlIG9sZGVyIiwKICB3aWZlX2FnZSA8IGh1c2JhbmRfYWdlIH4gIkh1c2JhbmQgb2xkZXIiLAogIHdpZmVfYWdlID09IGh1c2JhbmRfYWdlIH4gIlNhbWUgYWdlIgopCnJlY29kZSgpCmBgYAoK</div>
 
 
 

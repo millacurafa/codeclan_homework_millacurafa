@@ -64,7 +64,7 @@ case_when(sizes > 10 ~ "Big",
 
 small <- c(1:10)
 big <- c(11:10000)
-dplyr::recode(factor(sizes), small = "Small", big = "Big")
+dplyr::recode(sizes, small = "Small", big = "Big")
 
 ```
 
@@ -79,8 +79,33 @@ cherry → chipmunk
 ```{r}
 fruit <- c("apple", "apple", "banana", "cherry", "cherry")
 
-ifelse()
-case_when()
-dplyr::recode()
+ifelse(fruit == "apple", "alpaca", (ifelse(fruit == "banana", "bonobo", (ifelse(fruit == "cherry", "chipmunk", fruit)))) ) 
+
+case_when(
+  fruit == "apple" ~ "alpaca",
+  fruit == "banana" ~ "bonobo",
+  fruit == "cherry" ~ "chipmunk"
+  )
+recode(fruit, "apple" = "alpaca", "banana" = "bonobo", "cherry" = "chipmunk")
+```
+
+The two vectors below show the ages at marriage of each member of a couple. The first elements of each vector correspond to the first couple, the second elements to the second couple, and so on.
+
+Create a new vector which is equal to:
+
+“Wife older” whenever the wife’s age is highest “Husband older” when the husband’s age is highest “Same age” when they are the same age
+
+```{r}
+wife_age <- c(29L, 30L, 36L, 31L, 22L)
+husband_age <- c(28L, 35L, 32L, 31L, 29L)
+
+ifelse(wife_age > husband_age, "Wife older", (ifelse(wife_age < husband_age, "Husband older", "Same age")))
+
+case_when(
+  wife_age > husband_age ~ "Wife older",
+  wife_age < husband_age ~ "Husband older",
+  wife_age == husband_age ~ "Same age"
+)
+recode()
 ```
 
