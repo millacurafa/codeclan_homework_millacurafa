@@ -1767,11 +1767,64 @@ multiply_by_15_adds_4(1:4)</code></pre>
 <p>Write a function that returns “bird”, if the input is “goose”, “duck” or “pigeon”, and returns “not bird” for all other input.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlyZF9kZXRlY3RvciA8LSBmdW5jdGlvbih4KXtcbiAgaWYgKHggPT0gXCJnb29zZVwiIHwgeCA9PSBcImR1Y2tcIiB8IHggPT0gXCJwaWdlb25cIil7XG4gICAgcmV0dXJuKFwiYmlyZFwiKVxuICB9IGVsc2UgcmV0dXJuKFwibm8gYmlyZFwiKVxufVxuXG5iaXJkX2RldGVjdG9yKFwiYV93ZWlyZF9iaXJkXCIpXG5gYGAifQ== -->
+<pre class="r"><code>bird_detector &lt;- function(x){
+  if (x == &quot;goose&quot; | x == &quot;duck&quot; | x == &quot;pigeon&quot;){
+    return(&quot;bird&quot;)
+  } else return(&quot;no bird&quot;)
+}
+
+bird_detector(&quot;a_weird_bird&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibm8gYmlyZFwiXG4ifQ== -->
+<pre><code>[1] &quot;no bird&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmlyZF9kZXRlY3RvcihcImdvb3NlXCIpXG5gYGAifQ== -->
+<pre class="r"><code>bird_detector(&quot;goose&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYmlyZFwiXG4ifQ== -->
+<pre><code>[1] &quot;bird&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Write a function which multiplies all numbers by 10. If the input isn’t a number, the function should return “Invalid input”.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfYW5kX2NoZWNrIDwtIGZ1bmN0aW9uKHgpe1xuICBpZiAoY2xhc3MoeCkgIT0gXCJudW1lcmljXCIpe1xuICAgIHJldHVybihcIkludmFsaWQgaW5wdXRcIilcbiAgfSBlbHNlIHggKiAxMFxufVxuXG5tdWx0aXBseV9hbmRfY2hlY2soMjApXG5gYGAifQ== -->
+<pre class="r"><code>multiply_and_check &lt;- function(x){
+  if (class(x) != &quot;numeric&quot;){
+    return(&quot;Invalid input&quot;)
+  } else x * 10
+}
+
+multiply_and_check(20)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIwMFxuIn0= -->
+<pre><code>[1] 200</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfYW5kX2NoZWNrKFwid2VpcmRfbnVtYmVyXCIpXG5gYGAifQ== -->
+<pre class="r"><code>multiply_and_check(&quot;weird_number&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSW52YWxpZCBpbnB1dFwiXG4ifQ== -->
+<pre><code>[1] &quot;Invalid input&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfYW5kX2NoZWNrKGMoMSwzLDQsNSkpXG5gYGAifQ== -->
+<pre class="r"><code>multiply_and_check(c(1,3,4,5))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEwIDMwIDQwIDUwXG4ifQ== -->
+<pre><code>[1] 10 30 40 50</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXVsdGlwbHlfYW5kX2NoZWNrKGMoMSwzLDQsNSxcImNhdFwiKSlcbmBgYCJ9 -->
+<pre class="r"><code>multiply_and_check(c(1,3,4,5,&quot;cat&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiSW52YWxpZCBpbnB1dFwiXG4ifQ== -->
+<pre><code>[1] &quot;Invalid input&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2Vla2VuZCBob21ld29yayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxlcyBhbGwgbnVtYmVycyBieSAxNSBhbmQgYWRkcyA0LgoKYGBge3J9Cm11bHRpcGx5X2J5XzE1X2FkZHNfNCA8LSBmdW5jdGlvbih4KXsKICB4ICogMTUgKyA0Cn0KCm11bHRpcGx5X2J5XzE1X2FkZHNfNCgxOjQpCmBgYAoKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHJldHVybnMg4oCcYmlyZOKAnSwgaWYgdGhlIGlucHV0IGlzIOKAnGdvb3Nl4oCdLCDigJxkdWNr4oCdIG9yIOKAnHBpZ2VvbuKAnSwgYW5kIHJldHVybnMg4oCcbm90IGJpcmTigJ0gZm9yIGFsbCBvdGhlciBpbnB1dC4KCmBgYHtyfQoKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV2Vla2VuZCBob21ld29yayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxlcyBhbGwgbnVtYmVycyBieSAxNSBhbmQgYWRkcyA0LgoKYGBge3J9Cm11bHRpcGx5X2J5XzE1X2FkZHNfNCA8LSBmdW5jdGlvbih4KXsKICB4ICogMTUgKyA0Cn0KCm11bHRpcGx5X2J5XzE1X2FkZHNfNCgxOjQpCmBgYAoKV3JpdGUgYSBmdW5jdGlvbiB0aGF0IHJldHVybnMg4oCcYmlyZOKAnSwgaWYgdGhlIGlucHV0IGlzIOKAnGdvb3Nl4oCdLCDigJxkdWNr4oCdIG9yIOKAnHBpZ2VvbuKAnSwgYW5kIHJldHVybnMg4oCcbm90IGJpcmTigJ0gZm9yIGFsbCBvdGhlciBpbnB1dC4KCmBgYHtyfQpiaXJkX2RldGVjdG9yIDwtIGZ1bmN0aW9uKHgpewogIGlmICh4ID09ICJnb29zZSIgfCB4ID09ICJkdWNrIiB8IHggPT0gInBpZ2VvbiIpewogICAgcmV0dXJuKCJiaXJkIikKICB9IGVsc2UgcmV0dXJuKCJubyBiaXJkIikKfQoKYmlyZF9kZXRlY3RvcigiYV93ZWlyZF9iaXJkIikKCmJpcmRfZGV0ZWN0b3IoImdvb3NlIikKYGBgCgpXcml0ZSBhIGZ1bmN0aW9uIHdoaWNoIG11bHRpcGxpZXMgYWxsIG51bWJlcnMgYnkgMTAuIElmIHRoZSBpbnB1dCBpc27igJl0IGEgbnVtYmVyLCB0aGUgZnVuY3Rpb24gc2hvdWxkIHJldHVybiDigJxJbnZhbGlkIGlucHV04oCdLgoKYGBge3J9Cm11bHRpcGx5X2FuZF9jaGVjayA8LSBmdW5jdGlvbih4KXsKICBpZiAoY2xhc3MoeCkgIT0gIm51bWVyaWMiKXsKICAgIHJldHVybigiSW52YWxpZCBpbnB1dCIpCiAgfSBlbHNlIHggKiAxMAp9CgptdWx0aXBseV9hbmRfY2hlY2soMjApCgptdWx0aXBseV9hbmRfY2hlY2soIndlaXJkX251bWJlciIpCgptdWx0aXBseV9hbmRfY2hlY2soYygxLDMsNCw1KSkKCm11bHRpcGx5X2FuZF9jaGVjayhjKDEsMyw0LDUsImludmFsaWQiKSkKYGBgCgo=</div>
 
 
 
