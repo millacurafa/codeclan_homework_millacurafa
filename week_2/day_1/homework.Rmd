@@ -45,12 +45,52 @@ scotland_info <- read_delim("data/scotland.txt", delim = ";", skip = 1)
 
 How do you read text into a one element character vector?
 
+```{r}
+element <- c("trial")
+
+element[1]
+```
+
+
 Read in the steam-200k-sample.csv file. Fix any problems you may encounter.
+
+```{r}
+steam_200k <- read_csv("data/steam-200k-sample.csv", skip = 4)
+```
+
 
 Read in the historic_eu_payments.tsv file.
 
+```{r}
+historic_eu <- read_tsv("data/historic_eu_payments.tsv")
+```
+
+
 How do you read lines of text into a multi-element text vector?
+
+```{r}
+multi_element <- read_file("data/something.txt")
+
+#or if there are no columns
+
+multi_element <- read_lines("data/something.txt")
+```
+
 
 Read in the africa_health_data.dta file using the appropriate method.
 
+```{r}
+library(haven)
+
+africa_health <- read_stata("data/africa_health_data.dta")
+```
+
+
 Read in the JSON file from the following url: http://makemeanalyst.com/wp-content/uploads/2017/06/sample_json.txt
+
+```{r}
+library(jsonlite)
+
+read_json("http://makemeanalyst.com/wp-content/uploads/2017/06/sample_json.txt")
+```
+
