@@ -96,6 +96,8 @@ Create a new vector which is equal to:
 “Wife older” whenever the wife’s age is highest “Husband older” when the husband’s age is highest “Same age” when they are the same age
 
 ```{r}
+library(dplyr)
+
 wife_age <- c(29L, 30L, 36L, 31L, 22L)
 husband_age <- c(28L, 35L, 32L, 31L, 29L)
 
@@ -106,7 +108,8 @@ case_when(
   wife_age < husband_age ~ "Husband older",
   wife_age == husband_age ~ "Same age"
 )
-recode()
+difference <- sign(wife_age - husband_age)
+recode(difference, "1" = "Wife older", "0" = "Same age", "-1" = "Husband older")
 ```
 
 ```{r}
