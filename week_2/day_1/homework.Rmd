@@ -7,9 +7,18 @@ output: html_notebook
 
 Read in the state_income_data.csv file using the appropriate function.
 
+```{r}
+library(readr)
+state_income <- read_csv("data/state_income_data.csv")
+```
 
 
 How do you specify your own column names when using read_csv()?
+
+```{r}
+state_income <- read_csv("data/state_income_data.csv", col_names = c("replaces", "columns", "names", "with", "whatever", "you", "want"))
+```
+
 
 Read in the cars.csv file and use the col_types() function to ensure you load in:
 
@@ -17,7 +26,22 @@ X1 as character
 mpg, cyl, disp, hp as double
 vs as logical
 
+```{r}
+cars_info <- read_csv("data/cars.csv", 
+                      col_types = 
+                        cols(XI = col_character(), 
+                        vs = col_logical(), 
+                        c("mpg", "cyl", "disp", "hp") = col_double()
+                        ))
+```
+
+
 Read in the scotland.txt file using the appropriate function.
+
+```{r}
+scotland_info <- read_delim("data/scotland.txt", delim = ";", skip = 1)
+```
+
 
 How do you read text into a one element character vector?
 
