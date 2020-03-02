@@ -1,0 +1,32 @@
+---
+title: "Homework 02032020"
+output: html_notebook
+---
+
+
+
+Read in the state_income_data.csv file using the appropriate function.
+
+
+
+How do you specify your own column names when using read_csv()?
+
+Read in the cars.csv file and use the col_types() function to ensure you load in:
+
+X1 as character
+mpg, cyl, disp, hp as double
+vs as logical
+
+Read in the scotland.txt file using the appropriate function.
+
+How do you read text into a one element character vector?
+
+Read in the steam-200k-sample.csv file. Fix any problems you may encounter.
+
+Read in the historic_eu_payments.tsv file.
+
+How do you read lines of text into a multi-element text vector?
+
+Read in the africa_health_data.dta file using the appropriate method.
+
+Read in the JSON file from the following url: http://makemeanalyst.com/wp-content/uploads/2017/06/sample_json.txt
