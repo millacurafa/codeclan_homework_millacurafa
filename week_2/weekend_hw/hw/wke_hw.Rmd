@@ -52,11 +52,11 @@ dbGetQuery(db_connect,
 
 ```{r}
 dbGetQuery(db_connect,
-           "Select employees.*, teams.name AS team_name
-           FROM employees INNER JOIN teams
-           ON employees.team_id = teams.id
-           -- GROUP BY team_id 
-           -- AS num_employees
+           "Select  teams.name AS team_name,
+            COUNT(*) as num_employees
+            FROM employees INNER JOIN teams
+            ON employees.team_id = teams.id
+            GROUP BY team_name 
            ")
 ```
 
