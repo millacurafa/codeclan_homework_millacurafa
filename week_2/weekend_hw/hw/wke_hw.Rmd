@@ -23,28 +23,56 @@ rm(username, password)
 Create a new data.frame containing the details of all employees held in the database
 
 ```{r}
-
+dbGetQuery(db_connect,
+           "Select * FROM employees
+           ")
 ```
 
 Retrieve the records for all employees again, but this time add a field full_name containing the first_name and last_name of each employee separated by a space.
 
 ```{r}
-
+dbGetQuery(db_connect,
+           "Select *, CONCAT(first_name, ' ', last_name) AS full_name
+           FROM employees
+           ")
 ```
 
 Retrieve the details of all employees again, but this time listing their team name (as team_name), rather than their team_id.
 
 ```{r}
-
+dbGetQuery(db_connect,
+           "Select employees.*, teams.name AS team_name
+           FROM employees INNER JOIN teams
+           ON employees.team_id = teams.id
+           ")
 ```
 
 
 [Bit Harder] Do a breakdown of the number of employees per team (here we want two columns: team_name and num_employees). Order the table in decreasing number of employees. Include all teams, even if they have no employees.
 
 ```{r}
-
+dbGetQuery(db_connect,
+           "Select employees.*, teams.name AS team_name
+           FROM employees INNER JOIN teams
+           ON employees.team_id = teams.id
+           -- GROUP BY team_id 
+           -- AS num_employees
+           ")
 ```
 
 
 [Bit Harder] AcmeCorp management want to send an email survey to each of their employees. However, they are worried that some of the employees may not receive the email either because their email addresses may be invalid (in that they don’t contain an ‘@’ symbol), or they may not have a stored email address at all. Can you find all these employees?
+
+```{r}
+dbGetQuery(db_connect,
+           "Select * 
+           FROM employees
+           WHERE email IS NULL 
+           OR email NOT LIKE '%@%'
+           ")
+```
+
+```{r}
+dbDisconnect(db_connect)
+```
 
