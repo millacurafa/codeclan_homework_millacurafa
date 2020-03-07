@@ -1,0 +1,50 @@
+---
+title: "Weekend Homework"
+output: html_notebook
+---
+
+Connecting DB to R
+
+```{r}
+library(keyring)
+library(RPostgreSQL)
+
+keyring_unlock("local")
+username <- key_get("postgresql_username", keyring = "local")
+password <- key_get("postgresql_password", keyring = "local")
+
+keyring_lock("local")
+
+db_connect <- dbConnect(drv = PostgreSQL(), user = username, password = password, dbname = "acme_employees", host = "localhost")
+
+rm(username, password)
+```
+
+Create a new data.frame containing the details of all employees held in the database
+
+```{r}
+
+```
+
+Retrieve the records for all employees again, but this time add a field full_name containing the first_name and last_name of each employee separated by a space.
+
+```{r}
+
+```
+
+Retrieve the details of all employees again, but this time listing their team name (as team_name), rather than their team_id.
+
+```{r}
+
+```
+
+
+[Bit Harder] Do a breakdown of the number of employees per team (here we want two columns: team_name and num_employees). Order the table in decreasing number of employees. Include all teams, even if they have no employees.
+
+```{r}
+
+```
+
+
+[Bit Harder] AcmeCorp management want to send an email survey to each of their employees. However, they are worried that some of the employees may not receive the email either because their email addresses may be invalid (in that they don’t contain an ‘@’ symbol), or they may not have a stored email address at all. Can you find all these employees?
+
