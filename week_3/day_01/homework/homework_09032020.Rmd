@@ -65,7 +65,37 @@ drink_calories <- mutate(
 
 ```{r}
 drinks_grouped <- group_by(drinks_content_nooutlier, 
-                           Beverage_prep) %>%
-  summarise(Calories)
+                           Beverage_prep)
+
+drinks_summary <- summarise(drinks_grouped, mean_cal = mean(Calories))
+
+arrange(drinks_summary, desc(mean_cal))
+
+
+
 ```
+
+```{r}
+select(drinks_content_nooutlier, Beverage_category, Beverage, Beverage_prep, Calories) %>% 
+  filter(Beverage_category == "Classic Espresso Drinks") %>%
+  mutate( calorie_diff = 135 - Calories) %>%
+  group_by(Beverage) %>%
+  summarise(mean_cal = mean(Calories)) %>%
+  arrange(desc(mean_cal)) 
+  
+```
+
+```{r}
+
+drink_calories
+
+max(drink_calories$Calories)
+
+min(drink_calories$Calories)
+```
+
+```{r}
+drinks_distribution <- cume_dist(drinks_grouped)
+```
+
 
