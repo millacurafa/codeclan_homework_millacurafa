@@ -1,0 +1,71 @@
+---
+title: "Homework 09032020"
+output: html_notebook
+---
+
+```{r}
+library(readr)
+library(tidyverse)
+
+drinks_content <- read.csv("starbucks_drinkMenu_expanded.csv", na=".")
+
+dim(drinks_content)
+
+names(drinks_content)
+```
+
+```{r}
+drinks_mean <- mean(drinks_content$Calories)
+
+drinks_median <- median(drinks_content$Calories)
+
+drinks_var <- var(drinks_content$Calories)
+
+drinks_norm <- norm(as.matrix(drinks_content$Calories))
+
+hist(drinks_content$Calories)
+
+boxplot(drinks_content$Calories)
+
+
+#There is a 5% difference between mean an median and variance and normality tests give really high results
+
+
+# You can get the actual values of the outliers and assign the outlier values into a vector
+outliers <- boxplot(drinks_content$Calories, plot=FALSE)$out
+
+# Check the results
+print(outliers)
+
+#There is just one outlier and removing it will improve the data and statistics regarding it
+
+# First you need find in which rows the outliers are
+drinks_content[which(drinks_content$Calories %in% outliers), ]
+
+# Now you can remove the rows containing the outliers, one possible option is:
+drinks_content_nooutlier <- drinks_content[-which(drinks_content$Calories %in% outliers),]
+
+# If you check now with boxplot, you will notice that those pesky outliers are gone!
+boxplot(drinks_content_nooutlier$Calories)
+
+
+```
+
+```{r}
+select(drinks_content_nooutlier, Beverage_category, Beverage, Beverage_prep, Calories) %>% filter(Beverage_category == "Classic Espresso Drinks")
+  
+```
+
+```{r}
+drink_calories <- mutate(
+  drinks_content_nooutlier,
+  calorie_diff = 135 - Calories
+)
+```
+
+```{r}
+drinks_grouped <- group_by(drinks_content_nooutlier, 
+                           Beverage_prep) %>%
+  summarise(Calories)
+```
+

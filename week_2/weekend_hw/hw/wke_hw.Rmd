@@ -72,6 +72,24 @@ dbGetQuery(db_connect,
            ")
 ```
 
+EXTENSIONS
+
+Which of the employees provided the most recent feedback? What was the date of this feedback?
+
+```{r}
+
+dbGetQuery(db_connect,
+           "Select 
+            CONCAT(employees.first_name, ' ' , employees.last_name) AS full_name, 
+            feedbacks.date AS date
+            FROM employees INNER JOIN feedbacks
+            ON employees.team_id = feedbacks.employee_id
+            ORDER BY date DESC
+            
+           ")
+
+```
+
 ```{r}
 dbDisconnect(db_connect)
 ```
