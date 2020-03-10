@@ -56,5 +56,66 @@ women_data_clean_median <- women_data_clean %>%
                                     median(prop_women, na.rm = TRUE)))
 
 #NA values were replaced by their median to improve dispersion of data
+
+
+boxplot(women_data_clean_median$prop_women)
 ```
 
+```{r}
+library(outliers)
+
+# get the z-scores for each value in prop_women
+prop_women_zscores <- scores(women_data_clean_median$prop_women)
+
+is_outlier <- prop_women_zscores > 3 | prop_women_zscores < -3
+
+women_data_clean_median <- women_data_clean_median %>%
+  mutate(is_outlier = is_outlier)
+
+
+# create a table with only outliers
+women_data_clean_median_outliers <- women_data_clean_median %>%
+  filter(is_outlier == TRUE)
+
+
+women_data_clean_median_no_outliers <- women_data_clean_median %>%
+  filter(is_outlier == FALSE)
+
+boxplot(women_data_clean_median_outliers$prop_women)
+
+#as they are really far away from the median and seems to have a distribution on their own the outliers data should be analysed separatelly
+
+boxplot(women_data_clean_median_no_outliers$prop_women)
+```
+
+```{r}
+# calculate least calories
+lowest_10_women <- women_data_clean_median_no_outliers %>%
+  arrange(prop_women) %>%
+  mutate(ranking = min_rank(prop_women)) %>%
+  filter(ranking <=10)
+
+# calculate most calories
+highest_10_women <- women_data_clean_median_no_outliers %>%
+  mutate(ranking = min_rank(desc(prop_women))) %>%
+  filter(ranking <=10)
+
+#women have no parliamentary representation in United Arab Emirates
+```
+
+```{r}
+# calculate least calories
+lowest_10_women_outliers <- women_data_clean_median_outliers %>%
+  arrange(prop_women) %>%
+  mutate(ranking = min_rank(prop_women)) %>%
+  filter(ranking <=10)
+
+# calculate most calories
+highest_10_women_outliers <- women_data_clean_median_outliers %>%
+  mutate(ranking = min_rank(desc(prop_women))) %>%
+  filter(ranking <=10)
+
+#as the outliers data has its own distribution we can do the same analysis separatelly
+
+#interestingly the highest women proportions are all found in Rwanda
+```
