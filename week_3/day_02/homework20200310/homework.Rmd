@@ -2,3 +2,35 @@
 title: "Homework 10/03/2020"
 output: html_notebook
 ---
+
+```{r}
+library(tidyverse)
+library(janitor)
+
+women_data <- read_csv("data/women_in_gov.csv", skip = 4)
+
+
+```
+```{r}
+names(women_data)
+```
+
+```{r}
+
+unique(women_data$x64)
+unique(women_data$indicator_name) 
+unique(women_data$indicator_code)
+unique(women_data$x1960)
+
+women_data_clean <- women_data %>% 
+  clean_names() %>% 
+  select(-c(
+    #x64, indicator_name, indicator_code, 
+    1960, 1961, x1962, x1963, x1964, x1965, x1966, x1967, x1968, x1969, x1970, x1980, x1981, x1982, x1983, x1984, x1985, x1986, x1987, x1988, x1989)) %>% 
+  pivot_longer(
+    x1960:hr_pm,
+    names_to = "year",
+    values_to = "value",
+  )
+```
+

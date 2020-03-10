@@ -1750,8 +1750,125 @@ summary {
 
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGphbml0b3IpXG5cbndvbWVuX2RhdGEgPC0gcmVhZF9jc3YoXCJkYXRhL3dvbWVuX2luX2dvdi5jc3ZcIiwgc2tpcCA9IDQpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+library(janitor)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSG9tZXdvcmsgMTAvMDMvMjAyMCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQo=</div>
+women_data &lt;- read_csv(&quot;data/women_in_gov.csv&quot;, skip = 4)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTWlzc2luZyBjb2x1bW4gbmFtZXMgZmlsbGVkIGluOiAnWDY0JyBbNjRdUGFyc2VkIHdpdGggY29sdW1uIHNwZWNpZmljYXRpb246XG5jb2xzKFxuICAuZGVmYXVsdCA9IGNvbF9sb2dpY2FsKCksXG4gIGBDb3VudHJ5IE5hbWVgID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGBDb3VudHJ5IENvZGVgID0gXHUwMDFiWzMxbWNvbF9jaGFyYWN0ZXIoKVx1MDAxYlszOW0sXG4gIGBJbmRpY2F0b3IgTmFtZWAgPSBcdTAwMWJbMzFtY29sX2NoYXJhY3RlcigpXHUwMDFiWzM5bSxcbiAgYEluZGljYXRvciBDb2RlYCA9IFx1MDAxYlszMW1jb2xfY2hhcmFjdGVyKClcdTAwMWJbMzltLFxuICBgMTk5MGAgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgYDE5OTdgID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGAxOTk4YCA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBgMTk5OWAgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgYDIwMDBgID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGAyMDAxYCA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBgMjAwMmAgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgYDIwMDNgID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGAyMDA0YCA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBgMjAwNWAgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgYDIwMDZgID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGAyMDA3YCA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBgMjAwOGAgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bSxcbiAgYDIwMDlgID0gXHUwMDFiWzMybWNvbF9kb3VibGUoKVx1MDAxYlszOW0sXG4gIGAyMDEwYCA9IFx1MDAxYlszMm1jb2xfZG91YmxlKClcdTAwMWJbMzltLFxuICBgMjAxMWAgPSBcdTAwMWJbMzJtY29sX2RvdWJsZSgpXHUwMDFiWzM5bVxuICAjIC4uLiB3aXRoIDcgbW9yZSBjb2x1bW5zXG4pXG5TZWUgc3BlYyguLi4pIGZvciBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9ucy5cbiJ9 -->
+<pre><code>Missing column names filled in: 'X64' [64]Parsed with column specification:
+cols(
+  .default = col_logical(),
+  `Country Name` = [31mcol_character()[39m,
+  `Country Code` = [31mcol_character()[39m,
+  `Indicator Name` = [31mcol_character()[39m,
+  `Indicator Code` = [31mcol_character()[39m,
+  `1990` = [32mcol_double()[39m,
+  `1997` = [32mcol_double()[39m,
+  `1998` = [32mcol_double()[39m,
+  `1999` = [32mcol_double()[39m,
+  `2000` = [32mcol_double()[39m,
+  `2001` = [32mcol_double()[39m,
+  `2002` = [32mcol_double()[39m,
+  `2003` = [32mcol_double()[39m,
+  `2004` = [32mcol_double()[39m,
+  `2005` = [32mcol_double()[39m,
+  `2006` = [32mcol_double()[39m,
+  `2007` = [32mcol_double()[39m,
+  `2008` = [32mcol_double()[39m,
+  `2009` = [32mcol_double()[39m,
+  `2010` = [32mcol_double()[39m,
+  `2011` = [32mcol_double()[39m
+  # ... with 7 more columns
+)
+See spec(...) for full column specifications.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMod29tZW5fZGF0YSlcbmBgYCJ9 -->
+<pre class="r"><code>names(women_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkNvdW50cnkgTmFtZVwiICAgXCJDb3VudHJ5IENvZGVcIiAgIFwiSW5kaWNhdG9yIE5hbWVcIiBcIkluZGljYXRvciBDb2RlXCJcbiBbNV0gXCIxOTYwXCIgICAgICAgICAgIFwiMTk2MVwiICAgICAgICAgICBcIjE5NjJcIiAgICAgICAgICAgXCIxOTYzXCIgICAgICAgICAgXG4gWzldIFwiMTk2NFwiICAgICAgICAgICBcIjE5NjVcIiAgICAgICAgICAgXCIxOTY2XCIgICAgICAgICAgIFwiMTk2N1wiICAgICAgICAgIFxuWzEzXSBcIjE5NjhcIiAgICAgICAgICAgXCIxOTY5XCIgICAgICAgICAgIFwiMTk3MFwiICAgICAgICAgICBcIjE5NzFcIiAgICAgICAgICBcblsxN10gXCIxOTcyXCIgICAgICAgICAgIFwiMTk3M1wiICAgICAgICAgICBcIjE5NzRcIiAgICAgICAgICAgXCIxOTc1XCIgICAgICAgICAgXG5bMjFdIFwiMTk3NlwiICAgICAgICAgICBcIjE5NzdcIiAgICAgICAgICAgXCIxOTc4XCIgICAgICAgICAgIFwiMTk3OVwiICAgICAgICAgIFxuWzI1XSBcIjE5ODBcIiAgICAgICAgICAgXCIxOTgxXCIgICAgICAgICAgIFwiMTk4MlwiICAgICAgICAgICBcIjE5ODNcIiAgICAgICAgICBcblsyOV0gXCIxOTg0XCIgICAgICAgICAgIFwiMTk4NVwiICAgICAgICAgICBcIjE5ODZcIiAgICAgICAgICAgXCIxOTg3XCIgICAgICAgICAgXG5bMzNdIFwiMTk4OFwiICAgICAgICAgICBcIjE5ODlcIiAgICAgICAgICAgXCIxOTkwXCIgICAgICAgICAgIFwiMTk5MVwiICAgICAgICAgIFxuWzM3XSBcIjE5OTJcIiAgICAgICAgICAgXCIxOTkzXCIgICAgICAgICAgIFwiMTk5NFwiICAgICAgICAgICBcIjE5OTVcIiAgICAgICAgICBcbls0MV0gXCIxOTk2XCIgICAgICAgICAgIFwiMTk5N1wiICAgICAgICAgICBcIjE5OThcIiAgICAgICAgICAgXCIxOTk5XCIgICAgICAgICAgXG5bNDVdIFwiMjAwMFwiICAgICAgICAgICBcIjIwMDFcIiAgICAgICAgICAgXCIyMDAyXCIgICAgICAgICAgIFwiMjAwM1wiICAgICAgICAgIFxuWzQ5XSBcIjIwMDRcIiAgICAgICAgICAgXCIyMDA1XCIgICAgICAgICAgIFwiMjAwNlwiICAgICAgICAgICBcIjIwMDdcIiAgICAgICAgICBcbls1M10gXCIyMDA4XCIgICAgICAgICAgIFwiMjAwOVwiICAgICAgICAgICBcIjIwMTBcIiAgICAgICAgICAgXCIyMDExXCIgICAgICAgICAgXG5bNTddIFwiMjAxMlwiICAgICAgICAgICBcIjIwMTNcIiAgICAgICAgICAgXCIyMDE0XCIgICAgICAgICAgIFwiMjAxNVwiICAgICAgICAgIFxuWzYxXSBcIjIwMTZcIiAgICAgICAgICAgXCIyMDE3XCIgICAgICAgICAgIFwiMjAxOFwiICAgICAgICAgICBcIlg2NFwiICAgICAgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;Country Name&quot;   &quot;Country Code&quot;   &quot;Indicator Name&quot; &quot;Indicator Code&quot;
+ [5] &quot;1960&quot;           &quot;1961&quot;           &quot;1962&quot;           &quot;1963&quot;          
+ [9] &quot;1964&quot;           &quot;1965&quot;           &quot;1966&quot;           &quot;1967&quot;          
+[13] &quot;1968&quot;           &quot;1969&quot;           &quot;1970&quot;           &quot;1971&quot;          
+[17] &quot;1972&quot;           &quot;1973&quot;           &quot;1974&quot;           &quot;1975&quot;          
+[21] &quot;1976&quot;           &quot;1977&quot;           &quot;1978&quot;           &quot;1979&quot;          
+[25] &quot;1980&quot;           &quot;1981&quot;           &quot;1982&quot;           &quot;1983&quot;          
+[29] &quot;1984&quot;           &quot;1985&quot;           &quot;1986&quot;           &quot;1987&quot;          
+[33] &quot;1988&quot;           &quot;1989&quot;           &quot;1990&quot;           &quot;1991&quot;          
+[37] &quot;1992&quot;           &quot;1993&quot;           &quot;1994&quot;           &quot;1995&quot;          
+[41] &quot;1996&quot;           &quot;1997&quot;           &quot;1998&quot;           &quot;1999&quot;          
+[45] &quot;2000&quot;           &quot;2001&quot;           &quot;2002&quot;           &quot;2003&quot;          
+[49] &quot;2004&quot;           &quot;2005&quot;           &quot;2006&quot;           &quot;2007&quot;          
+[53] &quot;2008&quot;           &quot;2009&quot;           &quot;2010&quot;           &quot;2011&quot;          
+[57] &quot;2012&quot;           &quot;2013&quot;           &quot;2014&quot;           &quot;2015&quot;          
+[61] &quot;2016&quot;           &quot;2017&quot;           &quot;2018&quot;           &quot;X64&quot;           </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG51bmlxdWUod29tZW5fZGF0YSR4NjQpXG5gYGAifQ== -->
+<pre class="r"><code>
+unique(women_data$x64)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biBvciB1bmluaXRpYWxpc2VkIGNvbHVtbjogJ3g2NCcuXG4ifQ== -->
+<pre><code>Unknown or uninitialised column: 'x64'.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5pcXVlKHdvbWVuX2RhdGEkaW5kaWNhdG9yX25hbWUpIFxuYGBgIn0= -->
+<pre class="r"><code>unique(women_data$indicator_name) </code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biBvciB1bmluaXRpYWxpc2VkIGNvbHVtbjogJ2luZGljYXRvcl9uYW1lJy5cbiJ9 -->
+<pre><code>Unknown or uninitialised column: 'indicator_name'.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5pcXVlKHdvbWVuX2RhdGEkaW5kaWNhdG9yX2NvZGUpXG5gYGAifQ== -->
+<pre class="r"><code>unique(women_data$indicator_code)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biBvciB1bmluaXRpYWxpc2VkIGNvbHVtbjogJ2luZGljYXRvcl9jb2RlJy5cbiJ9 -->
+<pre><code>Unknown or uninitialised column: 'indicator_code'.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudW5pcXVlKHdvbWVuX2RhdGEkeDE5NjApXG5gYGAifQ== -->
+<pre class="r"><code>unique(women_data$x1960)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biBvciB1bmluaXRpYWxpc2VkIGNvbHVtbjogJ3gxOTYwJy5cbiJ9 -->
+<pre><code>Unknown or uninitialised column: 'x1960'.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTlVMTFxuIn0= -->
+<pre><code>NULL</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud29tZW5fZGF0YV9jbGVhbiA8LSB3b21lbl9kYXRhICU+JSBcbiAgY2xlYW5fbmFtZXMoKSAlPiUgXG4gIHNlbGVjdCgtYyh4NjQsIGluZGljYXRvcl9uYW1lLCBpbmRpY2F0b3JfY29kZSwgMTk2MCwgMTk2MSwgeDE5NjIsIHgxOTYzLCB4MTk2NCwgeDE5NjUsIHgxOTY2LCB4MTk2NywgeDE5NjgsIHgxOTY5LCB4MTk3MCwgeDE5ODAsIHgxOTgxLCB4MTk4MiwgeDE5ODMsIHgxOTg0LCB4MTk4NSwgeDE5ODYsIHgxOTg3LCB4MTk4OCwgeDE5ODkpKSAlPiUgXG4gIHBpdm90X2xvbmdlcihcbiAgICB4MTk2MDpocl9wbSxcbiAgICBuYW1lc190byA9IFwieWVhclwiLFxuICAgIHZhbHVlc190byA9IFwidmFsdWVcIixcbiAgKVxuYGBgIn0= -->
+<pre class="r"><code>women_data_clean &lt;- women_data %&gt;% 
+  clean_names() %&gt;% 
+  select(-c(x64, indicator_name, indicator_code, 1960, 1961, x1962, x1963, x1964, x1965, x1966, x1967, x1968, x1969, x1970, x1980, x1981, x1982, x1983, x1984, x1985, x1986, x1987, x1988, x1989)) %&gt;% 
+  pivot_longer(
+    x1960:hr_pm,
+    names_to = &quot;year&quot;,
+    values_to = &quot;value&quot;,
+  )</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IENhbid0IHN1YnNldCBjb2x1bW5zIHRoYXQgZG9uJ3QgZXhpc3QuXG5cdTAwMWJbMzFteFx1MDAxYlszOW0gVGhlIGxvY2F0aW9ucyAxOTYwIGFuZCAxOTYxIGRvbid0IGV4aXN0LlxuXHUwMDFiWzM0beKEuVx1MDAxYlszOW0gVGhlcmUgYXJlIG9ubHkgNjQgY29sdW1ucy5cbiJ9 -->
+<pre><code>Error: Can't subset columns that don't exist.
+[31mx[39m The locations 1960 and 1961 don't exist.
+[34mℹ[39m There are only 64 columns.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSG9tZXdvcmsgMTAvMDMvMjAyMCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGphbml0b3IpCgp3b21lbl9kYXRhIDwtIHJlYWRfY3N2KCJkYXRhL3dvbWVuX2luX2dvdi5jc3YiLCBza2lwID0gNCkKCgpgYGAKYGBge3J9Cm5hbWVzKHdvbWVuX2RhdGEpCmBgYAoKYGBge3J9Cgp1bmlxdWUod29tZW5fZGF0YSR4NjQpCnVuaXF1ZSh3b21lbl9kYXRhJGluZGljYXRvcl9uYW1lKSAKdW5pcXVlKHdvbWVuX2RhdGEkaW5kaWNhdG9yX2NvZGUpCnVuaXF1ZSh3b21lbl9kYXRhJHgxOTYwKQoKd29tZW5fZGF0YV9jbGVhbiA8LSB3b21lbl9kYXRhICU+JSAKICBjbGVhbl9uYW1lcygpICU+JSAKICBzZWxlY3QoLWMoCiAgICAjeDY0LCBpbmRpY2F0b3JfbmFtZSwgaW5kaWNhdG9yX2NvZGUsIAogICAgMTk2MCwgMTk2MSwgeDE5NjIsIHgxOTYzLCB4MTk2NCwgeDE5NjUsIHgxOTY2LCB4MTk2NywgeDE5NjgsIHgxOTY5LCB4MTk3MCwgeDE5ODAsIHgxOTgxLCB4MTk4MiwgeDE5ODMsIHgxOTg0LCB4MTk4NSwgeDE5ODYsIHgxOTg3LCB4MTk4OCwgeDE5ODkpKSAlPiUgCiAgcGl2b3RfbG9uZ2VyKAogICAgeDE5NjA6aHJfcG0sCiAgICBuYW1lc190byA9ICJ5ZWFyIiwKICAgIHZhbHVlc190byA9ICJ2YWx1ZSIsCiAgKQpgYGAKCg==</div>
 
 
 
