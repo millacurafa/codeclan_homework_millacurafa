@@ -7,7 +7,6 @@ output: html_notebook
 library(tidyverse)
 library(janitor)
 
-women_data <- read_csv("data/women_in_gov.csv", skip = 4)
 
 
 ```
@@ -17,6 +16,8 @@ names(women_data)
 
 ```{r}
 
+women_data <- read_csv("data/women_in_gov.csv", skip = 4)
+
 unique(women_data$x64)
 unique(women_data$indicator_name) 
 unique(women_data$indicator_code)
@@ -24,13 +25,36 @@ unique(women_data$x1960)
 
 women_data_clean <- women_data %>% 
   clean_names() %>% 
-  select(-c(
-    #x64, indicator_name, indicator_code, 
-    1960, 1961, x1962, x1963, x1964, x1965, x1966, x1967, x1968, x1969, x1970, x1980, x1981, x1982, x1983, x1984, x1985, x1986, x1987, x1988, x1989)) %>% 
+  select(
+    -c(#x64, 
+       indicator_name, indicator_code, x1960, x1961, x1962, x1963, x1964, x1965, x1966, x1967, x1968, x1969, x1970, x1971, x1972, x1973, x1974, x1975, x1976, x1977, x1978, x1979, x1980, x1981, x1982, x1983, x1984, x1985, x1986, x1987, x1988, x1989)
+         ) %>% 
   pivot_longer(
-    x1960:hr_pm,
+    x1990:x1991:x1992:x1993:x1994:x1995:x1996:x1997:x1998:x1999:x2000:x2001:x2002:x2003:x2004:x2005:x2006:x2007:x2008:x2009:x2010:x2011:x2012:x2013:x2014:x2015:x2016:x2017:x2018,
     names_to = "year",
-    values_to = "value",
+    values_to = "prop_women"
   )
+```
+
+```{r}
+
+#counts total missing values
+women_data_clean %>%
+  summarise(count = sum(is.na(prop_women)))
+
+women_data_clean %>%
+filter(is.na(prop_women)) %>%
+  unique()
+
+#just NAs are present, not other Non Standard Missing Values were observed 
+
+
+# replace na observations in the monthly_charges column, with the median of that column
+women_data_clean_median <- women_data_clean %>%
+    mutate(prop_women = replace(prop_women, 
+                                    is.na(prop_women), 
+                                    median(prop_women, na.rm = TRUE)))
+
+#NA values were replaced by their median to improve dispersion of data
 ```
 
