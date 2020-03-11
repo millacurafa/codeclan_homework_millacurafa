@@ -17,7 +17,7 @@ names(women_data)
 ```{r}
 
 women_data <- read_csv("data/women_in_gov.csv", skip = 4)
-
+dim(women_data)
 unique(women_data$x64)
 unique(women_data$indicator_name) 
 unique(women_data$indicator_code)
