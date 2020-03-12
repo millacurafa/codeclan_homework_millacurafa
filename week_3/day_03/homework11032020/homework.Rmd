@@ -15,11 +15,59 @@ names(tweets)
 
 ```{r}
 boxplot(tweets$favorite_count)
+
+hist(tweets$favorite_count)
+
+# get the outliers 
+outliers <- boxplot(tweets$favorite_count, plot=FALSE)$out
+
+
+print(outliers)
+
+#A favourite count of 35 is not to high, I, therefore, will leave outliers inside the sample
 ```
 Find the total number of favourited tweets (stored in favorite_count) that CodeClan tweets have got. Don’t add a tweet’s favorite_count to the total when the tweet was quoted (see the is_quote variable).
 ```{r}
-tweets %>% 
-select()
 
+  tweets_filtered <- filter(tweets, is_quote != TRUE) 
+
+  sum(as.numeric(tweets_filtered$favorite_count))
+
+```
+
+Count the total number of likes (i.e. total of favorite_count), split by media type, and arrange them from most likes to least. Assume that any tweets without a listed media type are of type “text”.
+
+```{r}
+
+tweets %>% 
+  group_by(media_type) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count))
+
+```
+
+Find the mean number of characters that a CodeClan tweet contains.
+
+```{r}
+
+```
+
+
+The code_clan_info.csv data file contains status_url along with other info. Load this in, and join it to the code_clan_tweets tibble, so that you have a status_url for each tweet. Decide which variable to join the tibbles on.
+
+```{r}
+tweets_info <- read_csv("data/code_clan_info.csv")
+
+tweets_left <- left_join(tweets, tweets_info, by = "tweet_id")
+```
+
+
+From your new joined data, create a new tibble codeclan_hashtags containing only the tweet_id and hashtags in lowercase for analysis. Keep only those tweets with hashtags.
+```{r}
+codeclan_hashtags <- tweets_left %>% 
+                      select(tweet_id, hashtags) %>% 
+                      filter()
+                        
+codeclan_hashtags                  
 ```
 
