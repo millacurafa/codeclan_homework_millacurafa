@@ -49,6 +49,9 @@ tweets %>%
 Find the mean number of characters that a CodeClan tweet contains.
 
 ```{r}
+tweets %>% 
+  mutate(tweet_length = str_length(text)) 
+  
 
 ```
 
