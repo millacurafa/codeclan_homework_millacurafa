@@ -16,11 +16,64 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Who had the longest long jump seen in the data?
 
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+
+
+decathlon_clean <- read_csv("../clean_data/decathlon_data_clean.csv")
+```
+
+```{r}
+decathlon_clean %>% 
+  select(surname, event, scores) %>% 
+  filter(event == "long_jump") %>% 
+  arrange(desc(scores)) %>% 
+  top_n(1, scores)
+
+
+```
+
+
+*Clay has the largest long jump scoring 7.96*
+
+
+
 #### What was the average 100m time in each competition?
+
+```{r}
+decathlon_clean %>% 
+  select(competition, event, scores) %>% 
+  filter(event == "running_100m") %>% 
+  group_by(competition) %>% 
+  summarise(mean(scores))
+
+
+```
+
+*The average 100m time for Decastar and OlympicG was 11.18 and 10.92 respectively*
 
 #### Who had the highest total points across both competitions?
 
+```{r}
+decathlon_clean %>% 
+  select(surname, competition, event, points) %>% 
+  group_by(surname) %>% 
+  summarise(total_points = sum(points)) %>% 
+  arrange(desc(total_points)) %>% 
+  top_n(1, total_points)
+
+
+```
+
+*The highest total score accros both competitions was obtained by Sebrle, with a total score of 171100 points*
+
 #### What was the shot-put scores for the top three competitors in each competition?
+
+```{r}
+decathlon_clean %>% 
+  select(surname, event, scores)
+```
+
 
 #### What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds?
 
