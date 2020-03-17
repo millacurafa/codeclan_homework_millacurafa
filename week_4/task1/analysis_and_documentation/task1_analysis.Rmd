@@ -71,33 +71,35 @@ decathlon_clean %>%
 
 ```{r}
 decathlon_clean %>% 
-  select(surname, event, scores)
+  select(surname, event, scores, points, competition) %>% 
+  group_by(competition) %>% 
+  filter(event == "shot_put") %>% 
+  arrange(desc(points)) %>% 
+  top_n(3, points)
 ```
 
+*Information for the top three scores in the shot_put event are depicted below*
+
+| surname | event | scores | points | competition |
+|---|---|---|---|---|
+| sebrle | shot_put | 16.36	 | 8893 | OlympicG |
+| clay  | shot_put | 15.23 |  8820 | OlympicG |
+| karpov  | shot_put | 15.93 |  8725 |  OlympicG |
+| sebrle  | shot_put  | 14.83  |  8217 | Decastar |
+| clay  | shot_put  | 14.26  |  8122 | Decastar |
+| karpov  | shot_put  | 14.77  |  8099 | Decastar |
 
 #### What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds?
 
+```{r}
+decathlon_clean %>% 
+  select(surname, event, points, scores) %>% 
+  filter(event == "running_400m") %>% 
+  group_by(over_50_seconds = scores > 50) %>% 
+  summarise(avg_points = mean(points))
 
 
+```
 
+*The average points for competitors that ran the 400m in less than 50 seconds was 8120.48 vs 7727.17 from the ones that ran in more than 50 seconds*
 
-
-<!-- ## R Markdown -->
-
-<!-- This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. -->
-
-<!-- When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this: -->
-
-<!-- ```{r cars} -->
-<!-- summary(cars) -->
-<!-- ``` -->
-
-<!-- ## Including Plots -->
-
-<!-- You can also embed plots, for example: -->
-
-<!-- ```{r pressure, echo=FALSE} -->
-<!-- plot(pressure) -->
-<!-- ``` -->
-
-<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->

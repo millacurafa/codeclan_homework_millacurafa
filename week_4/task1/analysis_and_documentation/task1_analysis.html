@@ -406,26 +406,90 @@ decathlon_clean &lt;- read_csv(&quot;../clean_data/decathlon_data_clean.csv&quot
 <div id="who-had-the-highest-total-points-across-both-competitions" class="section level4">
 <h4>Who had the highest total points across both competitions?</h4>
 <pre class="r"><code>decathlon_clean %&gt;% 
-  select(competition, event, scores) %&gt;% 
-  filter(event == &quot;running_100m&quot;) %&gt;% 
-  arrange(desc(scores)) </code></pre>
-<pre><code>## # A tibble: 41 x 3
-##    competition event        scores
-##    &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt;
-##  1 Decastar    running_100m   11.6
-##  2 Decastar    running_100m   11.4
-##  3 Decastar    running_100m   11.4
-##  4 OlympicG    running_100m   11.4
-##  5 Decastar    running_100m   11.3
-##  6 Decastar    running_100m   11.3
-##  7 Decastar    running_100m   11.3
-##  8 OlympicG    running_100m   11.3
-##  9 OlympicG    running_100m   11.2
-## 10 OlympicG    running_100m   11.1
-## # … with 31 more rows</code></pre>
+  select(surname, competition, event, points) %&gt;% 
+  group_by(surname) %&gt;% 
+  summarise(total_points = sum(points)) %&gt;% 
+  arrange(desc(total_points)) %&gt;% 
+  top_n(1, total_points)</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   surname total_points
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 sebrle        171100</code></pre>
+<p><em>The highest total score accros both competitions was obtained by Sebrle, with a total score of 171100 points</em></p>
 </div>
 <div id="what-was-the-shot-put-scores-for-the-top-three-competitors-in-each-competition" class="section level4">
 <h4>What was the shot-put scores for the top three competitors in each competition?</h4>
+<pre class="r"><code>decathlon_clean %&gt;% 
+  select(surname, event, scores, points, competition) %&gt;% 
+  group_by(competition) %&gt;% 
+  filter(event == &quot;shot_put&quot;) %&gt;% 
+  arrange(desc(points)) %&gt;% 
+  top_n(3, points)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+## # Groups:   competition [2]
+##   surname event    scores points competition
+##   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      
+## 1 sebrle  shot_put   16.4   8893 OlympicG   
+## 2 clay    shot_put   15.2   8820 OlympicG   
+## 3 karpov  shot_put   15.9   8725 OlympicG   
+## 4 sebrle  shot_put   14.8   8217 Decastar   
+## 5 clay    shot_put   14.3   8122 Decastar   
+## 6 karpov  shot_put   14.8   8099 Decastar</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>surname</th>
+<th>event</th>
+<th>scores</th>
+<th>points</th>
+<th>competition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sebrle</td>
+<td>shot_put</td>
+<td>16.36</td>
+<td>8893</td>
+<td>OlympicG</td>
+</tr>
+<tr class="even">
+<td>clay</td>
+<td>shot_put</td>
+<td>15.23</td>
+<td>8820</td>
+<td>OlympicG</td>
+</tr>
+<tr class="odd">
+<td>karpov</td>
+<td>shot_put</td>
+<td>15.93</td>
+<td>8725</td>
+<td>OlympicG</td>
+</tr>
+<tr class="even">
+<td>sebrle</td>
+<td>shot_put</td>
+<td>14.83</td>
+<td>8217</td>
+<td>Decastar</td>
+</tr>
+<tr class="odd">
+<td>clay</td>
+<td>shot_put</td>
+<td>14.26</td>
+<td>8122</td>
+<td>Decastar</td>
+</tr>
+<tr class="even">
+<td>karpov</td>
+<td>shot_put</td>
+<td>14.77</td>
+<td>8099</td>
+<td>Decastar</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="what-was-the-average-points-for-competitors-who-ran-the-400m-in-less-than-50-seconds-vs.those-than-ran-400m-in-more-than-50-seconds" class="section level4">
 <h4>What was the average points for competitors who ran the 400m in less than 50 seconds vs. those than ran 400m in more than 50 seconds?</h4>
