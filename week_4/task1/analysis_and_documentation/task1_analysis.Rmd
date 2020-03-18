@@ -101,5 +101,5 @@ decathlon_clean %>%
 
 ```
 
-*The average points for competitors that ran the 400m in less than 50 seconds was 8120.48 vs 7727.17 from the ones that ran in more than 50 seconds*
+*The average points for competitors that ran the 400m in less than 50 seconds was 8120.48 vs 7727.17 for the ones that ran in more than 50 seconds*
 

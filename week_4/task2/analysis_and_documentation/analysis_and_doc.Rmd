@@ -1,0 +1,91 @@
+---
+title: "Analysis and Documentation"
+author: "Felipe Millacura"
+date: "18/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+cake_ingredients <- read_csv("../clean_data/cake_ingredients_clean.csv")
+```
+
+## Analysis questions
+
+#### Which cake has the most cocoa in it?
+
+```{r}
+cake_ingredients %>% 
+  select(cake, quantity, ingredient, measure) %>% 
+  filter(ingredient == "cocoa")
+```
+
+*The cake with most cocoa on it is the "One Bowl Chocolate" with 10.0 tablespoons*
+
+#### For sponge cake, how many cups of ingredients are used in total?
+
+```{r}
+cake_ingredients %>% 
+  select(cake, quantity, ingredient, measure) %>% 
+  filter(cake == "Sponge") %>% 
+  filter(measure == "cup") %>% 
+  summarise(total_cups = sum(quantity))
+
+```
+
+*A total of 3.5 cups are used in the sponge cake preparation*
+
+#### How many ingredients are measured in teaspoons?
+
+```{r}
+cake_ingredients %>% 
+  select(cake, quantity, ingredient, measure) %>% 
+  filter(measure == "teaspoon") %>% 
+  filter(ingredient == unique(ingredient)) %>% 
+  summarise(teaspoon_total = n())
+
+```
+
+*There are a total of 12 ingredients measured in teaspoons*
+
+#### Which cake has the most unique ingredients?
+
+```{r}
+cake_ingredients %>% 
+  select(cake, ingredient) %>% 
+  group_by(cake) %>% 
+  summarise(ingredient_total = n()) %>% 
+  arrange(desc(ingredient_total))
+
+```
+
+*There are two cakes with the most quantity of unique ingredients, the "Babas au Rhum" and the "One Bowl Chocolate" cakes*
+
+#### Which ingredients are used only once?
+
+```{r}
+cake_ingredients %>% 
+  select(cake, ingredient) %>% 
+  group_by(ingredient) %>% 
+  summarise(total_use = n()) %>% 
+  filter(total_use == 1)
+
+```
+
+*The ingredients used only once are:*
+
+| ingredient | times used   |
+|---|---|
+| bananas  |  1 |
+| cream of tartar  | 1  |
+| crushed ice  | 1  |
+| dried currants  | 1  |
+| egg white  | 1  |
+| nutmeg  | 1  |
+| nuts  | 1  |
+| zwiebach  | 1  |
+
+
