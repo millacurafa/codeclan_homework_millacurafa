@@ -1,0 +1,102 @@
+---
+title: "Analysis - Task3"
+author: "Felipe Millacura"
+date: "18/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+
+seabird_data <- read_csv("../clean_data/seabird_data_clean.csv")
+```
+
+## Analysis questions
+
+### For each question where we ask for bird names, give the bird’s common name, scientific name and species abbreviation.
+
+#### Which bird had the most individual sightings?
+
+```{r}
+seabird_data %>%
+  select(species_common_name_taxon_age_sex_plumage_phase, species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation, count) %>% 
+  filter(count == "1") %>% 
+  group_by(species_abbreviation) %>% 
+  summarise(sightings = n()) %>% 
+  arrange(desc(sightings))
+
+seabird_data %>%
+  select(species_common_name_taxon_age_sex_plumage_phase, species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation) %>% 
+  filter(species_abbreviation == "DIOANTEXU PL3")
+```
+
+*The bird with most individual sightings is*
+
+| species_abbreviation  |  sightings |  species_common_name | species_scientific_name  |
+|---|---|---|---|
+| DIOANTEXU PL3  | 1707	  |  Wandering albatross sensu lato PL3 |  Diomedea antipodensis / exulans PL3 |
+
+#### Which bird had the highest total count?
+
+```{r}
+
+seabird_data %>%
+  select(species_common_name_taxon_age_sex_plumage_phase, species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation, count) %>% 
+  group_by(species_abbreviation) %>% 
+  summarise(total_count = sum(count)) %>% 
+  arrange(desc(total_count))
+
+seabird_data %>%
+  select(species_common_name_taxon_age_sex_plumage_phase, species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation) %>% 
+  filter(species_abbreviation == "LARBUL")
+
+```
+
+*The bird with the highest total count is*
+
+| species_abbreviation  |  total |  species_common_name | species_scientific_name  |
+|---|---|---|---|
+| LARBUL  | 7732	  |  Black-billed gull |  	Larus bulleri |
+
+#### Which bird had the highest total count above a latitude of -30?
+
+```{r}
+seabird_data %>%
+  select(species_common_name_taxon_age_sex_plumage_phase, species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation, count, lat) %>% 
+  filter(lat > -30 ) %>% 
+  group_by(species_abbreviation) %>% 
+  summarise(total_count = sum(count)) %>% 
+  arrange(desc(total_count))
+
+seabird_data %>%
+  select(species_common_name_taxon_age_sex_plumage_phase, species_scientific_name_taxon_age_sex_plumage_phase, species_abbreviation) %>% 
+  filter(species_abbreviation == "PUFPAC")
+```
+
+*The bird with the  highest total count above a latitude of -30 is*
+
+| species_abbreviation  |  total |  species_common_name | species_scientific_name  |
+|---|---|---|---|
+| PUFPAC  | 855	  | Wedge-tailed shearwater  |  	Puffinus pacificus |
+
+#### How many different types of birds were only ever seen in groups of 1?
+
+```{r}
+
+seabird_data %>%
+  select(species_abbreviation, count) %>%
+  group_by(species_abbreviation) %>% 
+  #summarise(sightings = n()) %>% 
+  arrange(desc(count))
+
+```
+
+#### How many penguins were seen? (Hint: there are many types of penguin)
+
+```{r}
+
+```
+
+
