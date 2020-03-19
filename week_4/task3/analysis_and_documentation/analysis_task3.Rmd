@@ -103,7 +103,7 @@ library(stringr)
 
 seabird_data %>%
   select(species_abbreviation, species_common_name_taxon_age_sex_plumage_phase, count) %>%
-  filter(species_common_name_taxon_age_sex_plumage_phase == str_extract("[Pp][Ee][Nn][Gg][Uu][Ii][Nn]*"))
+  filter(species_common_name_taxon_age_sex_plumage_phase == str_extract(species_common_name_taxon_age_sex_plumage_phase, "[Pp][Ee][Nn][Gg][Uu][Ii][Nn]*"))
 ```
 
 
