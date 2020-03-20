@@ -15,6 +15,7 @@ library(janitor)
 library(tidyr)
 library(readxl)
 
+
 #Reads file and imports it as a data.frame
 
 candy_data_2015 <- read_xlsx(here("raw_data/boing-boing-candy-2015.xlsx"))
@@ -42,23 +43,85 @@ names(candy_data_2017)
 #cleaning column names and dropping unnecesary ones
 
 candy_cleandata_2015 <-  clean_names(candy_data_2015) %>% 
-  select(-timestamp) %>% 
-  rename(age = how_old_are_you,
-         trick_or_treat = are_you_going_actually_going_trick_or_treating_yourself)
+  select(-c(
+    timestamp,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_beyonce_knowles,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_donald_trump,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_hillary_clinton,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_jj_abrams,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_thom_yorke,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_malala_yousafzai,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_jk_rowling,
+    please_estimate_the_degrees_of_separation_you_have_from_the_following_folks_bruce_lee,
+    which_day_do_you_prefer_friday_or_sunday,
+    please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_francis_bacon_1561_1626,
+    please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_kevin_bacon,
+    please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_bieber,
+    please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_beyonce,
+    please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_jj_abrams,
+    please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_jk_rowling,
+    fill_in_the_blank_imitation_is_a_form_of,
+    if_you_squint_really_hard_the_words_intelligent_design_would_look_like,
+    what_is_your_favourite_font,
+    fill_in_the_blank_taylor_swift_is_a_force_for,
+    that_dress_that_went_viral_early_this_year_when_i_first_saw_it_it_was,
+    check_all_that_apply_i_cried_tears_of_sadness_at_the_end_of,
+    betty_or_veronica,
+    guess_the_number_of_mints_in_my_hand,
+    please_list_any_items_not_included_above_that_give_you_despair,
+    please_list_any_items_not_included_above_that_give_you_joy,
+    please_leave_any_remarks_or_comments_regarding_your_choices
+
+         )) %>% 
+    rename(  age = how_old_are_you,
+            trick_or_treat = are_you_going_actually_going_trick_or_treating_yourself
+            ) %>%  
+            mutate("year" = "2015") %>% 
+            rowid_to_column("user_id") %>% 
+            pivot_longer(cols = 4:necco_wafers,
+                       names_to = "candy",
+                       values_to = "rating"
+          )
+
+names(candy_cleandata_2015)
 
 candy_cleandata_2016 <- clean_names(candy_data_2016) %>% 
   select(-c(timestamp, 
-            your_gender, 
             which_country_do_you_live_in, 
-            which_state_province_county_do_you_live_in)) %>% 
+            which_state_province_county_do_you_live_in,
+            when_you_see_the_above_image_of_the_4_different_websites_which_one_would_you_most_likely_check_out_please_be_honest,
+            do_you_eat_apples_the_correct_way_east_to_west_side_to_side_or_do_you_eat_them_like_a_freak_of_nature_south_to_north_bottom_to_top,
+            which_day_do_you_prefer_friday_or_sunday,
+            please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_francis_bacon_1561_1626,
+            please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_kevin_bacon,
+            please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_bieber,
+            please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_beyonce,
+            please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_jj_abrams,
+            please_estimate_the_degree_s_of_separation_you_have_from_the_following_celebrities_jk_rowling,
+            what_is_your_favourite_font,
+            that_dress_that_went_viral_a_few_years_back_when_i_first_saw_it_it_was,
+            betty_or_veronica,
+            guess_the_number_of_mints_in_my_hand,
+            please_leave_any_witty_snarky_or_thoughtful_remarks_or_comments_regarding_your_choices,
+            please_list_any_items_not_included_above_that_give_you_despair,
+            please_list_any_items_not_included_above_that_give_you_joy
+            )) %>% 
   rename(age = how_old_are_you,
-         trick_or_treat = are_you_going_actually_going_trick_or_treating_yourself)
+         trick_or_treat = are_you_going_actually_going_trick_or_treating_yourself,
+          gender = your_gender) %>% 
+  mutate("year" = "2016") %>% 
+  rowid_to_column("user_id") %>% 
+  pivot_longer(cols = 5:york_peppermint_patties_ignore,
+               names_to = "candy",
+               values_to = "rating"
+  )
+
+#names(candy_cleandata_2016)
 
 candy_cleandata_2017 <- clean_names(candy_data_2017) %>% 
   select(-c(internal_id, 
             q4_country, 
-            q5_state_province_county_etc, 
-            q2_gender,
+            q5_state_province_county_etc,
             q7_joy_other,                                                                    
             q8_despair_other,                                                                
             q9_other_comments,                                                               
@@ -72,6 +135,7 @@ candy_cleandata_2017 <- clean_names(candy_data_2017) %>%
             click_coordinates_x_y)) %>% 
   rename(age = q3_age,
          trick_or_treat = q1_going_out,
+         gender = q2_gender,
          x100_grand_bar = q6_100_grand_bar,
          anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes = q6_anonymous_brown_globs_that_come_in_black_and_orange_wrappers_a_k_a_mary_janes,
          any_full_sized_candy_bar = q6_any_full_sized_candy_bar,
@@ -175,11 +239,21 @@ candy_cleandata_2017 <- clean_names(candy_data_2017) %>%
          white_bread = q6_white_bread,
          whole_wheat_anything = q6_whole_wheat_anything,
          york_peppermint_patties = q6_york_peppermint_patties,
-         )
+         ) %>% 
+  mutate("year" = "2017") %>% 
+  rowid_to_column("user_id") %>% 
+  pivot_longer(cols = 5:york_peppermint_patties,
+               names_to = "candy",
+               values_to = "rating"
+  )
 
-names(candy_cleandata_2017)
+#Join tables
+
+candy_data_clean <- bind_rows(candy_cleandata_2016, candy_cleandata_2017)
+
+#names(candy_cleandata_2017)
 
 #Writes/creates cleaned CSV file
 
-write_csv(candy_data_clean, "../clean_data/candy_data_clean.csv")
+write_csv(candy_data_clean, "clean_data/candy_data_clean.csv")
 
