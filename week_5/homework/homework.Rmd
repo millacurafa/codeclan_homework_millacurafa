@@ -100,6 +100,25 @@ Question 5.
 
 Is this relationship different between men and women? Choose an appropriate plot and interpret your findings.
 
+```{r}
+
+backpack %>% 
+  ggplot() +
+  geom_bar(
+    aes(
+      x = backpack_weight,
+      fill = sex
+    )) +
+  geom_bar(
+    aes(
+      x = body_weight,
+      fill = sex
+    ))
+  # ) +
+
+```
+
+
 Question 6.
 
 What proportion of students report back pain?
