@@ -80,6 +80,19 @@ What is the relationship between body weight and backpack weight?
 
 ```{r}
 
+backpack %>% 
+  ggplot() +
+  geom_bar(
+    aes(
+      x = backpack_weight
+    )) +
+  geom_bar(
+    aes(
+      x = body_weight
+    ))
+  # ) +
+  # facet_wrap(~ body_weight)
+
 ```
 
 
@@ -91,9 +104,39 @@ Question 6.
 
 What proportion of students report back pain?
 
+```{r}
+backpack %>% 
+  ggplot() +
+  geom_bar(
+    aes(
+      x= back_problems
+      
+      
+    ), fill = "blue"
+  )
+
+
+```
+
+
 Question 7.
 
 Is this proportion different between men and women?
+
+```{r}
+
+backpack %>% 
+  ggplot() +
+  geom_bar(
+    aes(
+      x= back_problems
+      , fill = sex
+      
+    )
+  )
+
+```
+
 
 Question 8.
 
