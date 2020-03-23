@@ -83,7 +83,7 @@ candy_cleandata_2015 <-  clean_names(candy_data_2015) %>%
                        values_to = "rating"
           )
 
-names(candy_cleandata_2015)
+#names(candy_cleandata_2015)
 
 candy_cleandata_2016 <- clean_names(candy_data_2016) %>% 
   select(-c(timestamp, 
