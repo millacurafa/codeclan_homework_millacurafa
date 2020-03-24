@@ -82,14 +82,11 @@ What is the relationship between body weight and backpack weight?
 
 backpack %>% 
   ggplot() +
-  geom_bar(
+  geom_plot(
     aes(
-      x = backpack_weight
-    )) +
-  geom_bar(
-    aes(
-      x = body_weight
-    ))
+      x = body_weight, 
+      y = backpack_weight
+    )) 
   # ) +
   # facet_wrap(~ body_weight)
 
