@@ -82,12 +82,13 @@ What is the relationship between body weight and backpack weight?
 
 backpack %>% 
   ggplot() +
-  geom_plot(
+  geom_point(
     aes(
       x = body_weight, 
-      y = backpack_weight
+      y = backpack_weight,
+      colour = sex
     )) 
-  # ) +
+ 
   # facet_wrap(~ body_weight)
 
 ```
@@ -101,16 +102,12 @@ Is this relationship different between men and women? Choose an appropriate plot
 
 backpack %>% 
   ggplot() +
-  geom_bar(
+  geom_point(
     aes(
       x = backpack_weight,
-      fill = sex
-    )) +
-  geom_bar(
-    aes(
-      x = body_weight,
-      fill = sex
-    ))
+      y = body_weight,
+      colour = sex
+    )) 
   # ) +
 
 ```
@@ -128,7 +125,7 @@ backpack %>%
       x= back_problems
       
       
-    ), fill = "blue"
+    ), fill = c("light green", "sky blue")
   )
 
 
