@@ -65,26 +65,32 @@ uk_utlas <- uk_utlas %>%
 #Ploting data to prepare dashboard
 
 uk_cases %>% 
-          ggplot() +
-          geom_point(colour = "steelblue") +
+          ggplot() + 
+          geom_point(colour = "steelblue") + 
           aes(
             x = date,
             y = cumulative_cases,
           ) + 
           labs(
-            x = "Date",
+            title = "Covid-19 confirmed cases in the UK",
+            x = NULL,
             y = "Total cases",
             caption = "Total Covid-19 cases detected in the UK"
           )  + 
           scale_y_continuous(sec.axis = sec_axis(
                               name = "Cases per day", 
-                              ~ . / 5, 
-                              geom_bar(fill = "purple", 
-                                       stat = "identity", 
-                                       aes(
-                                         x = date,
-                                         y = cases
-                                       )))) 
+                              ~ . / 3,
+                              ), 
+                             n.breaks = 8,
+                             #limits = c(0, 6000)
+                             ) +
+          geom_bar(fill = "purple", 
+                  stat = "identity", 
+                  aes(
+                      x = date,
+                      y = cases * 3
+                      )) + 
+          theme(legend.position="left")
           
 
 uk_deaths %>% 
