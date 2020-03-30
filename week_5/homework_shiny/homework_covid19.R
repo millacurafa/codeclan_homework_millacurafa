@@ -1,7 +1,7 @@
 library(janitor)
 library(tidyverse)
 library(readxl)
-library(shiny)
+
 
 
 #Importing data from EXCEL file available at https://fingertips.phe.org.uk/documents/Historic%20COVID-19%20Dashboard%20Data.xlsx
@@ -61,16 +61,22 @@ uk_utlas <- uk_utlas %>%
               ) %>% 
               clean_names()
 
+uk_total_analysis <- left_join(uk_cases, uk_deaths, uk_recovered, by ="date")
                   
 #Ploting data to prepare dashboard
 
-uk_cases %>% 
+uk_total_analysis %>% 
           ggplot() + 
+          theme(legend.position="left") +
+          aes(x = date) +
           geom_point(colour = "steelblue") + 
           aes(
-            x = date,
             y = cumulative_cases,
-          ) + 
+          ) +
+          # geom_line(colour = "light red") + 
+          # aes(
+          #   y = uk
+          # ) +
           labs(
             title = "Covid-19 confirmed cases in the UK",
             x = NULL,
@@ -80,6 +86,7 @@ uk_cases %>%
           scale_y_continuous(sec.axis = sec_axis(
                               name = "Cases per day", 
                               ~ . / 3,
+                             # labels = c(0,1000,2000,3000,4000,5000,6000,7000,8000,9000)
                               ), 
                              n.breaks = 8,
                              #limits = c(0, 6000)
@@ -87,10 +94,13 @@ uk_cases %>%
           geom_bar(fill = "purple", 
                   stat = "identity", 
                   aes(
-                      x = date,
                       y = cases * 3
-                      )) + 
-          theme(legend.position="left")
+                      )) +
+          geom_bar(fill = "light blue", 
+                   stat = "identity", 
+                   aes(
+                     y = deaths * 3
+                   )) 
           
 
 uk_deaths %>% 
