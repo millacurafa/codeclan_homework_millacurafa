@@ -34,9 +34,10 @@ pal <- colorNumeric(
 
 leaflet(covid_chile) %>% 
   addTiles() %>% 
-  addCircleMarkers(lat = ~latitud, lng = ~longitud, popup = ~region) %>% 
-  addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
-              color = ~pal(casos_totales))
+  addCircleMarkers(lat = ~latitud, lng = ~longitud, popup = ~region) 
+  #%>% 
+  # addPolygons(stroke = FALSE, smoothFactor = 0.2, fillOpacity = 1,
+  #             color = ~pal(casos_totales))
   
 # 
 # library(CodeClanData)
