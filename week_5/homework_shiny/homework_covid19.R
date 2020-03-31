@@ -8,7 +8,7 @@ library(readxl)
 
 uk_cases <- read_xlsx("data/Historic COVID-19 Dashboard Data(1).xlsx", skip = 7, sheet =  2)
 
-uk_deaths <- read_xlsx("data/Historic COVID-19 Dashboard Data(1).xlsx", skip = 6, sheet =  3)
+uk_deaths <- read_xlsx("data/Historic COVID-19 Dashboard Data(1).xlsx", skip = 7, sheet =  3)
 
 uk_countries <- read_xlsx("data/Historic COVID-19 Dashboard Data(1).xlsx", skip = 7, sheet =  4)
 
@@ -61,9 +61,22 @@ uk_utlas <- uk_utlas %>%
               ) %>% 
               clean_names()
 
-uk_total_analysis <- left_join(uk_cases, uk_deaths, uk_recovered, by ="date")
+uk_total_analysis <- left_join(uk_cases, uk_deaths, by ="date") %>% 
+                        left_join(uk_recovered, by ="date") %>% 
+                        rename(daily_cases = cases,
+                               confirmed_cases = cumulative_cases,
+                               daily_deaths = deaths,
+                               cumulative_deaths_uk = uk,
+                               cumulative_deaths_england = england,
+                               cumulative_deaths_scotland = scotland,
+                               cumulative_deaths_wales = wales,
+                               cumulative_deaths_northern_ireland = northern_ireland,
+                               recovered_count = cumulative_counts
+                        )
                   
 #Ploting data to prepare dashboard
+
+#Whole UK analysis
 
 uk_total_analysis %>% 
           ggplot() + 
@@ -71,7 +84,7 @@ uk_total_analysis %>%
           aes(x = date) +
           geom_point(colour = "steelblue") + 
           aes(
-            y = cumulative_cases,
+            y = confirmed_cases,
           ) +
           # geom_line(colour = "light red") + 
           # aes(
@@ -94,21 +107,27 @@ uk_total_analysis %>%
           geom_bar(fill = "purple", 
                   stat = "identity", 
                   aes(
-                      y = cases * 3
+                      y = daily_cases * 3
                       )) +
           geom_bar(fill = "light blue", 
                    stat = "identity", 
                    aes(
-                     y = deaths * 3
+                     y = daily_deaths * 3
                    )) 
           
-
-uk_deaths %>% 
+#Daath patients in the UK and by country
+uk_total_analysis %>% 
       ggplot() +
+      aes(x = date) +
+      theme(legend.position="left") +
       geom_bar(fill = "red", stat = "identity") +
       aes(
-        x = date,
-        y = uk
+        y = cumulative_deaths_uk
+        
+      ) + 
+      geom_bar(fill = "blue", stat = "identity") +
+      aes(
+        y = daily_deaths
         
       ) + 
       labs(
@@ -116,12 +135,15 @@ uk_deaths %>%
         y = "Total cases",
         caption = "Total Covid-19 deaths in the UK")
 
-uk_recovered %>% 
+
+#Recovered patients in the UK
+uk_total_analysis %>% 
   ggplot() +
+  theme(legend.position="left") +
   geom_bar(fill = "Dark Green", stat = "identity") +
   aes(
     x = date,
-    y = cumulative_counts,
+    y = recovered_count,
     
   ) + 
   labs(
