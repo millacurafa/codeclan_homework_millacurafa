@@ -28,6 +28,8 @@ uk_recovered <-  total_uk_deaths <- read_xlsx("data/Historic COVID-19 Dashboard 
 
 #CLEANING STEPS
 
+#imports data, clean variable names and pivot data to longer when needed
+
 uk_cases <- uk_cases %>% 
               clean_names()
 
@@ -61,6 +63,8 @@ uk_utlas <- uk_utlas %>%
               ) %>% 
               clean_names()
 
+
+#Prepare tibble for analysis, fix variable names and join tables by date
 uk_total_analysis <- left_join(uk_cases, uk_deaths, by ="date") %>% 
                         left_join(uk_recovered, by ="date") %>% 
                         rename(daily_cases = cases,

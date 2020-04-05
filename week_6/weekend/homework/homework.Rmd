@@ -1,0 +1,24 @@
+---
+title: "Homework"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+data(msleep)
+```
+
+Explore the dataset
+
+```{r}
+
+names(msleep)
+# 1] "name"         "genus"        "vore"         "order"       
+#  [5] "conservation" "sleep_total"  "sleep_rem"    "sleep_cycle" 
+#  [9] "awake"        "brainwt"      "bodywt"      
+dim(msleep)
+# 83 11
+
+
+```
+
