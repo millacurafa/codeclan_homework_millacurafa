@@ -22,3 +22,46 @@ dim(msleep)
 
 ```
 
+Jabberwockies sleep for around 7 hours a night, on average. Perform an appropriate statistical test to determine whether the mean sleep_total in the sampled population of animal types differs from the typical value for jabberwockies.
+
+```{r}
+
+msleep %>% 
+  select(name, sleep_total) %>% 
+  summarise(mean_sleep_total = mean(sleep_total))
+
+# mean sleep_total in the sampled population of animal types: 10.43373	
+
+# Jabberwockies sleep for around 7 hours
+
+```
+
+Perform an appropriate statistical test to determine whether omnivores sleep for significantly longer than herbivores, on average.
+```{r}
+msleep %>% 
+  select(name, sleep_total, vore) %>% 
+  group_by(vore) %>% 
+  summarise(mean_sleep_total = mean(sleep_total))
+
+# carni	10.378947			
+# herbi	9.509375
+```
+
+Perform an appropriate statistical test to determine whether the proportion of domesticated animal types in the population of animal types is greater than 5%
+.
+[Hint - think about creating an is_domesticated variable for the analysis]
+
+```{r}
+
+msleep %>% 
+  select(name, conservation) %>% 
+  filter(conservation == "domesticated") %>% 
+  summarise(total_domesticated = n())
+# 10	
+
+msleep %>% 
+  select(name, conservation) %>% 
+  group_by(conservation) %>% 
+  summarise(total_domesticated = n())
+```
+
