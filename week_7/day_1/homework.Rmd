@@ -74,7 +74,9 @@ Time series familiarity
 ```{r}
 flights_data <- tibble(flights)
 
-flights_data %>% mutate("departure_date" == ymd_hm(as_date(year, month, day, hour, minute)))
+flights_data %>% mutate("departure_date" == ymd_hm(as_date(paste(year, month, day, hour, minute, sep = ":")))
+
+#This didn't work 
 ```
 
 
@@ -84,12 +86,28 @@ Start with the weather data from the nycflights13 package. Select all the variab
 
 ```{r}
 flights_weather <- nycflights13::weather %>% 
-  select(temp, humid, precip, -time_hour) 
+  select(temp, humid, precip, time_hour) 
 
 flights_weather %>% 
   ggplot() + 
-  geom_line(y = temp)
+  geom_line(
+    aes(y = temp, x = time_hour), 
+    colour = "red"
+  )
   
+flights_weather %>% 
+  ggplot() + 
+  geom_bar(stat = "identity",
+    aes(y = precip, x = time_hour), 
+    colour = "blue"
+  )
+
+flights_weather %>% 
+  ggplot() + 
+  geom_point(stat = "identity",
+    aes(y = humid, x = time_hour), 
+    colour = "light blue"
+  )
 ```
 
 
@@ -98,9 +116,11 @@ Question 7
 Change the weather data into a tsibble.
 
 ```{r}
-tsibble(nycflights13::weather, index = time_hour)
+weather_date <- nycflights13::weather
 
-nycflights13::weather
+tsibble(weather_date, index = time_hour)
+
+
 ```
 
 
