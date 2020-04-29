@@ -9,16 +9,39 @@ library(GGally)
 library(mosaicData)
 library(ggiraphExtra)
 ```
-
+Load the diamonds.csv data set and undertake an initial exploration of the data.
 ```{r}
+
 data <- read.csv("diamonds.csv")
 ```
 
+produce result summaries of the results of various model fitting functions. The function invokes particular methods which depend on the class of the first argument.
 ```{r}
+
 summary(data)
 ```
+Scatterplots of each pair of numeric variable are drawn on the left part of the figure. Pearson correlation is displayed on the right. Variable distribution is available on the diagonal.
+```{r}
+data %>% ggpairs()
+```
+Visualize the correlation of each pair of variable as a square
+```{r}
+data %>% 
+ggcorr()
+```
+
+
+
+drop columns x, y and z from the dataset
+```{r}
+data_clean <- data %>% 
+  select(-x, -y, -z)
+```
+
+investigate correlations between price and the predictors
 
 ```{r}
-data %>% ggpairs(carat)
+data_clean  %>% 
+  ggpairs()
 ```
 
