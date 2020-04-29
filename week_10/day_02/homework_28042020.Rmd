@@ -45,3 +45,18 @@ data_clean  %>%
   ggpairs()
 ```
 
+
+We see a reasonably strong association between the carat value and price
+```{r}
+data_clean %>%
+  ggplot(aes(x = carat, y = price)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+```{r}
+data_clean %>%
+  ggplot(aes(y = carat, x = price, group = carat)) + 
+  geom_boxplot()
+```
+
