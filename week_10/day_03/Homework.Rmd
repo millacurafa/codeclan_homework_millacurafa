@@ -3,24 +3,65 @@ title: "Homework - 30/04/2020"
 output: html_notebook
 ---
 
-Load libraries
+## Loads libraries
 
 ```{r}
 library(tidyverse)
+library(modelr)
+
+# visualisation packages
+library(ggiraphExtra)
+library(GGally)
 ```
 
 
-Loads data and checks inside
+## Loads data and checks inside
 
 ```{r}
 data <- read.csv("data/kc_house_data.csv")
 
 glimpse(data)
+head(data)
 ```
 
-Data wrangling
+## Data wrangling
+
+
 
 ```{r}
-
+data_trim <- data %>% 
+  drop_na() %>% 
+  select(-date, #352 unique values
+         -id, #not needed in this case
+         -sqft_living15, 
+         -sqft_lot15, 
+         -zipcode #we do have lat and long
+         )
 ```
 
+Checks waterfront
+
+```{r}
+data_trim %>% 
+distinct(waterfront) #it seems ok as a logical variable
+
+class(data_trim$waterfront)
+```
+Check for possible alias formation
+```{r}
+alias(price ~ ., data= data_trim)
+```
+##First predictions
+
+Checks correlation 1
+```{r}
+data_trim %>%
+  ggpairs(
+    # aes(colour = waterfront)
+    )
+```
+
+```{r}
+data_trim %>%
+  ggcorr()
+```
