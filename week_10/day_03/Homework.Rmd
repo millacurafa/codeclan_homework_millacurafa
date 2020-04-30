@@ -83,6 +83,9 @@ Plotting and observing alias() model
 par(mfrow = c(2, 2)) 
 
 plot(mod_alias)
+
+#Normal Q-Q, Scale-Location and Residual vs Leverage don't seem right
+#Model can be improved
 ```
 
 
