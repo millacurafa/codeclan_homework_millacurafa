@@ -56,12 +56,52 @@ alias(price ~ ., data= data_trim)
 Checks correlation 1
 ```{r}
 data_trim %>%
-  ggpairs(
-    # aes(colour = waterfront)
-    )
+  ggpairs()
+
+#This didn't run probably because data is not properly prepared 
 ```
 
 ```{r}
 data_trim %>%
   ggcorr()
 ```
+
+Trying full model from alias
+```{r}
+mod_alias <- lm(price ~ bedrooms + bathrooms + sqft_living + sqft_lot + floors + waterfront + view + condition + grade + sqft_above + sqft_basement + yr_built + yr_renovated + lat + long, data = data_trim)
+
+summary(mod_alias) 
+
+#R-squared:  0.6942
+#It's not a good model by itself
+```
+
+Plotting and observing alias() model
+
+```{r}
+
+par(mfrow = c(2, 2)) 
+
+plot(mod_alias)
+```
+
+
+Starts building a better model using possible useful variables obtained from ggcorr(): price, bedrooms, bathrooms, sqft_living, grade, waterfront
+
+```{r}
+#Model | Relation | R squared
+
+mod1a <- lm(price ~ bedrooms, data = data_trim) #0.09508
+mod2a <- lm(price ~ bathrooms, data = data_trim) #0.2758
+mod3a <- lm(price ~ grade, data = data_trim) #0.4455
+mod4a <- lm(price ~ sqft_living, data = data_trim) #0.4929
+mod5a <- lm(price ~ waterfront, data = data_trim) #0.07095
+
+summary(mod1a)
+summary(mod2a)
+summary(mod3a)
+summary(mod4a)
+summary(mod5a)
+```
+
+
