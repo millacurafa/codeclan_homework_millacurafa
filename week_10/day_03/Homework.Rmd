@@ -1,0 +1,26 @@
+---
+title: "Homework - 30/04/2020"
+output: html_notebook
+---
+
+Load libraries
+
+```{r}
+library(tidyverse)
+```
+
+
+Loads data and checks inside
+
+```{r}
+data <- read.csv("data/kc_house_data.csv")
+
+glimpse(data)
+```
+
+Data wrangling
+
+```{r}
+
+```
+
