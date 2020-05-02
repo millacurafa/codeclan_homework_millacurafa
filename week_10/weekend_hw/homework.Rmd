@@ -1,0 +1,48 @@
+---
+title: "Homework - May 2nd 2020"
+output: html_notebook
+---
+Import libraries to be used
+```{r }
+library(tidyverse)
+library(janitor)
+library(GGally)
+library(fastDummies)
+
+
+```
+
+Imports data and checks it
+
+```{r}
+avocado_data <- read.csv("data/avocado.csv") 
+
+avocado_data %>% 
+glimpse()
+
+avocado_data %>% 
+distinct(type)
+
+```
+
+Starts Data Wrangling
+
+```{r}
+avocado_data_trim <- avocado_data %>% 
+  clean_names() %>% 
+  select(-date, -x, -region, -x4046, -x4225, -x4770, -total_bags)
+
+avocado_data_trim %>% 
+  glimpse
+```
+
+Starts creating model
+
+```{r}
+avocado_data_trim %>% 
+distinct(region)
+
+avocado_data_trim %>% 
+  ggpairs(aes(colour = type))
+```
+
