@@ -2,7 +2,7 @@
 title: "Homework - May 2nd 2020"
 output: html_notebook
 ---
-Import libraries to be used
+## Import libraries to be used
 ```{r }
 library(tidyverse)
 library(janitor)
@@ -12,7 +12,7 @@ library(fastDummies)
 
 ```
 
-Imports data and checks it
+## Imports data and checks it
 
 ```{r}
 avocado_data <- read.csv("data/avocado.csv") 
@@ -25,18 +25,105 @@ distinct(type)
 
 ```
 
-Starts Data Wrangling
+## Starts Data Wrangling
 
 ```{r}
 avocado_data_trim <- avocado_data %>% 
   clean_names() %>% 
-  select(-date, -x, -region, -x4046, -x4225, -x4770, -total_bags)
+  select(-date, -x, -region, 
+         # -x4046, -x4225, -x4770, 
+         -total_volume,
+         -total_bags) %>% 
+  rename(hass_small_4046 = x4046, hass_large_4225 = x4225, hass_xl_4770 = x4770) %>% 
+  drop_na()
 
 avocado_data_trim %>% 
   glimpse
+
+avocado_data_trim %>% 
+  distinct(average_price) %>%  #259 different prices in total 
+  arrange(desc(average_price)) #from 3.25 to 0.44
+```
+## Observes data for average_price by different variables
+
+Year:
+```{r}
+avocado_data_trim %>% 
+  group_by(year) %>% 
+  ggplot() +
+  geom_boxplot(aes(
+    x = year,
+    y = average_price,
+    group = year
+  ))
 ```
 
-Starts creating model
+Type:
+
+```{r}
+avocado_data_trim %>% 
+  group_by(type) %>% 
+  ggplot() +
+  geom_boxplot(aes(
+    x = type,
+    y = average_price,
+    group = type
+  ))
+```
+
+Total Volume
+
+```{r}
+avocado_data_trim %>% 
+  # group_by(year) %>% 
+  ggplot() +
+  geom_point(aes(
+    x = total_volume, #has no clear correlation with price determination
+    y = average_price,
+    colour = type
+  ))
+```
+
+price/size
+```{r}
+avocado_data_trim %>% 
+  # group_by(year) %>% 
+  ggplot() +
+  aes(
+    y = average_price,) +
+  geom_point(aes(
+    x = hass_small_4046
+  ), colour = "light green") +
+  geom_point(aes(
+    x = hass_large_4225
+  ), colour = "blue") +
+  geom_point(aes(
+    x = hass_xl_4770
+  ), colour = "dark green") 
+```
+
+price/bags
+
+```{r}
+avocado_data_trim %>% 
+  # group_by(year) %>% 
+  ggplot() +
+  aes(
+    y = average_price,) +
+  geom_point(aes(
+    x = small_bags
+  ), colour = "light blue") +
+  geom_point(aes(
+    x = large_bags
+  ), colour = "red") +
+  geom_point(aes(
+    x = x_large_bags
+  ), colour = "purple") #x_large_bags has no much correlation with average_price
+```
+
+
+
+##Starts creating model
 
 ```{r}
 avocado_data_trim %>% 
@@ -44,5 +131,10 @@ distinct(region)
 
 avocado_data_trim %>% 
   ggpairs(aes(colour = type))
+```
+Checks correlation
+```{r}
+avocado_data_trim %>% 
+  ggcorr()
 ```
 
