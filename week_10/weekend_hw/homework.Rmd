@@ -8,7 +8,7 @@ library(tidyverse)
 library(janitor)
 library(GGally)
 library(fastDummies)
-
+library(ggbiplot)
 
 ```
 
@@ -28,6 +28,8 @@ distinct(type)
 ## Starts Data Wrangling
 
 ```{r}
+
+
 avocado_data_trim <- avocado_data %>% 
   clean_names() %>% 
   select(-date, -x, -region, 
@@ -43,6 +45,9 @@ avocado_data_trim %>%
 avocado_data_trim %>% 
   distinct(average_price) %>%  #259 different prices in total 
   arrange(desc(average_price)) #from 3.25 to 0.44
+
+avocado_data %>% 
+distinct(region) #there is 54 regions
 ```
 ## Observes data for average_price by different variables
 
@@ -125,10 +130,25 @@ avocado_data_trim %>%
 
 ##Starts creating model
 
-```{r}
-avocado_data_trim %>% 
-distinct(region)
+Creates a PCA model
 
+```{r}
+# run PCA 
+avocados_pca <- avocado_data_trim %>% 
+   select(-type) %>% 
+  prcomp(center = TRUE, scale. = TRUE)
+
+summary(avocados_pca)
+```
+
+plots avocado_pca
+
+```{r}
+ggbiplot(avocados_pca, obs.scale = 1, var.scale = 1)
+```
+
+
+```{r}
 avocado_data_trim %>% 
   ggpairs(aes(colour = type))
 ```
