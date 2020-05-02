@@ -135,7 +135,8 @@ Creates a PCA model
 ```{r}
 # run PCA 
 avocados_pca <- avocado_data_trim %>% 
-   select(-type) %>% 
+  mutate(type = ifelse(type == "conventional", 0 , 1)) %>% #transforms type into binary variables to be use in pca model
+   # select(-type) %>% 
   prcomp(center = TRUE, scale. = TRUE)
 
 summary(avocados_pca)
@@ -156,5 +157,33 @@ Checks correlation
 ```{r}
 avocado_data_trim %>% 
   ggcorr()
+```
+Models for average price to be tried by year and type
+```{r}
+mod1a <- lm(average_price ~ type, data = avocado_data_trim)
+
+mod1b <- lm(average_price ~ year, data = avocado_data_trim)
+
+summary(mod1a) #R^2 = 0.3793
+
+summary(mod1b) #R^2 = 0.008686
+```
+
+plot models
+
+```{r}
+# set our plotting parameter limits (2x2 graph)
+par(mfrow = c(2, 2)) 
+
+# plot
+plot(mod1a)
+```
+
+```{r}
+# set our plotting parameter limits (2x2 graph)
+par(mfrow = c(2, 2)) 
+
+# plot
+plot(mod1b)
 ```
 
