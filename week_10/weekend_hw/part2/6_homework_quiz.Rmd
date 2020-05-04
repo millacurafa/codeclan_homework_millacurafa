@@ -1,0 +1,147 @@
+---
+title: "Homework Quiz"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    css: ../../../../styles.css
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. I want to predict how well 6 year-olds are going to do in their final school exams. Using the following variables am I likely under-fitting, fitting well or over-fitting? Postcode, gender, reading level, score in maths test, date of birth, family income.
+
+```{r}
+# under-fitting: score in maths test, reading level
+# fitting well: greading level, score in maths test, family income, gender.
+# over-fitting: Postcode, gender, reading level, score in maths test, date of birth, family income.
+```
+
+
+
+2. If I have two models, one with an AIC score of 34,902 and the other with an AIC score of 33,559 which model should I use?
+
+```{r}
+# the best model is the one with an AIC of 33,559 as it has a lower relative amount of information lost 
+```
+
+
+3. I have two models, the first with: r-squared: 0.44, adjusted r-squared: 0.43. The second with: r-squared: 0.47, adjusted r-squared: 0.41. Which one should I use?
+
+```{r}
+# The second model should be used as the adjusted value is lower and it adjust better to different models
+```
+
+
+4. I have a model with the following errors: RMSE error on test set: 10.3, RMSE error on training data: 10.4. Do you think this model is over-fitting?
+
+```{r}
+# We need to know values of the dependent variable to make any conclusions as Root Mean Square Error (RMSE) is the standard deviation of the residuals, and this directly depends on the dependent variable
+```
+
+
+5. How does k-fold validation work?
+
+```{r}
+# 
+# k-fold validation or Cross-validation is a resampling procedure used to evaluate models on a limited data sample.
+# 
+# The procedure has a single parameter called k that refers to the number of groups that a given data sample is to be split into. 
+# 
+# The general procedure is as follows:
+# 
+#     Shuffle the dataset randomly.
+#     Split the dataset into k groups
+#     For each unique group:
+#         Take the group as a hold out or test data set
+#         Take the remaining groups as a training data set
+#         Fit a model on the training set and evaluate it on the test set
+#         Retain the evaluation score and discard the model
+#     Summarize the skill of the model using the sample of model evaluation scores
+
+```
+
+
+6. What is a validation set? When do you need one?
+
+```{r}
+
+# A validation set is used to give an unbiased estimate of the skills of the final tuned model when comparing or selecting between final models. This is different from the original dataset with which the model was trained and it's used to test/validate the model with "unbiased data" that has not seen before
+
+```
+
+
+7. Describe how backwards selection works.
+
+```{r}
+# Backward selection begins with all the variables selected, and removes the least significant one at each step, until none meet the criterion.
+```
+
+
+8. Describe how best subset selection works.
+
+```{r}
+# Best subsets regression is an exploratory model building regression analysis.  It compares all possible models that can be created based upon an identified set of predictors. Predictors could be as an example R2, adjusted R2, Mallow’s Cp, and S
+```
+
+
+9. It is estimated on 5% of model projects end up being deployed. What actions can you take to maximise the likelihood of your model being deployed?
+
+```{r}
+
+```
+
+
+10. What metric could you use to confirm that the recent population is similar to the development population?
+
+```{r}
+
+```
+
+
+11. How is the Population Stability Index defined? What does this mean in words?
+
+```{r}
+
+```
+
+
+12. Above what PSI value might we need to start to consider rebuilding or recalibrating the model
+
+```{r}
+
+```
+
+
+13. What are the common errors that can crop up when implementing a model?
+
+```{r}
+
+```
+
+
+14. After performance monitoring, if we find that the discrimination is still satisfactory but the accuracy has deteriorated, what is the recommended action?
+
+```{r}
+
+```
+
+
+15. Why is it important to have a unique model identifier for each model?
+
+```{r}
+
+```
+
+
+16. Why is it important to document the modelling rationale and approach?
+
+```{r}
+
+```
+
