@@ -35,7 +35,7 @@ avocado_data_trim <- avocado_data %>%
   select(-date, -x, -region, 
          # -x4046, -x4225, -x4770, 
          -total_volume,
-         -total_bags) %>% 
+         -total_bags)  %>% 
   rename(hass_small_4046 = x4046, hass_large_4225 = x4225, hass_xl_4770 = x4770) %>% 
   drop_na()
 
@@ -185,5 +185,28 @@ par(mfrow = c(2, 2))
 
 # plot
 plot(mod1b)
+```
+
+##Maybe the data should be splitted either in price sections or in type of avocado. I would try to create a model for organic and another one for conventional, as both seem to be pretty unrelated between them, but they correlate differently with all other variables
+
+
+```{r}
+avocado_con <- avocado_data_trim %>% 
+  filter(type == "conventional")
+
+avocado_org <- avocado_data_trim %>% 
+  filter(type == "organic")
+```
+
+check correlations with the filtered data
+
+```{r}
+avocado_con %>% 
+  ggpairs()
+```
+
+```{r}
+avocado_org %>% 
+  ggpairs()
 ```
 
