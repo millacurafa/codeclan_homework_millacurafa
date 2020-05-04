@@ -722,7 +722,7 @@ plot(mod1b)
 <!-- rnb-text-begin -->
 
 
-##Maybe the data should be splitted either in price sections or in type of avocado. I would try to create a model for organic and another one for conventional, as both seem to be pretty unrelated between them, but they correlate differently with all other variables
+##Maybe the data should be splitted either by price group sections or in type of avocado. I would try to create a model for organic and another one for conventional, as both seem to be pretty unrelated between them, but they correlate differently with all other variables
 
 
 
@@ -750,7 +750,7 @@ avocado_org <- avocado_data_trim %>%
 <!-- rnb-text-begin -->
 
 
-check correlations with the filtered data
+##checks correlations with the filtered data
 
 
 <!-- rnb-text-end -->
@@ -808,6 +808,7 @@ avocado_org %>%
 <!-- rnb-text-begin -->
 
 
+##Another option is making dummies for avocado sizes and bags, that would correlate easily with price as all other variables correlate between them. Bag size are correlated with avocado sold by size
 
 <!-- rnb-text-end -->
 
