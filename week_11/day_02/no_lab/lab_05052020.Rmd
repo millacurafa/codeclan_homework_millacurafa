@@ -1,0 +1,92 @@
+---
+title: "Lab - May 5th, 2020"
+output: html_notebook
+---
+
+Import libraries 
+
+```{r, message = FALSE}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(GGally)
+library(modelr)
+```
+
+Imports data
+
+```{r}
+data <- read_excel("telecomms_churn.xlsx") %>% 
+  select(-customerID) %>% 
+  clean_names()
+
+glimpse(data)
+```
+
+```{r}
+data <- data %>% 
+  mutate(senior_citizen = as.factor(ifelse(senior_citizen == 0, FALSE, TRUE))) %>% 
+  mutate(churn = as.factor(ifelse(churn == "Yes", TRUE, FALSE))) %>% 
+  mutate_if(is.character, as.factor) 
+  
+
+```
+
+```{r, message = FALSE}
+data %>% 
+  ggpairs()
+```
+
+```{r}
+data %>% 
+  ggcorr() #ignores non numeric variables
+```
+
+
+```{r}
+score_plot <- ggplot(data) +
+  geom_jitter(aes(x = gender, y = churn), shape = 1, 
+              position = position_jitter(h = 0.03))
+
+score_plot
+```
+
+```{r}
+score_plot <- ggplot(data) +
+  geom_jitter(aes(x = churn, y = tenure), shape = 1, 
+              position = position_jitter(h = 0.03))
+
+score_plot
+```
+
+
+```{r}
+score_plot <- ggplot(data) +
+  geom_jitter(aes(x = churn, y = monthly_charges), shape = 1, 
+              position = position_jitter(h = 0.03))
+
+score_plot
+```
+
+```{r}
+score_plot <- ggplot(data) +
+  geom_jitter(aes(x = churn, y = total_charges), shape = 1, 
+              position = position_jitter(h = 0.03))
+
+score_plot
+```
+
+```{r}
+churn_3pred_model <- glm(churn ~ monthly_charges + gender + contract, data = data, family = binomial(link = 'logit'))
+```
+
+```{r}
+summary(churn_3pred_model)
+```
+
+```{r}
+par(mfrow = c(2, 2)) 
+
+plot(churn_3pred_model)
+```
+
